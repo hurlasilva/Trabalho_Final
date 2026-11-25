@@ -1,0 +1,484 @@
+
+* {
+    box-sizing: border-box;
+}
+
+/* FADE-IN DA TELA DA HISTÓRIA */
+.fade-in-historia body {
+    animation: aparecerHistoria 1.5s ease-in-out both;
+}
+
+@keyframes aparecerHistoria {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: black;
+    font-family: Arial, sans-serif;
+}
+
+/* CENÁRIO */
+#cenario {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../assets/imagens/fundo_3.png');
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* CADERNO RATO */
+.caderno-rato {
+    position: absolute;
+    width: 200px;
+    left: 78%;
+    top: 56%;
+    transform: translate(-50%, -50%);
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.2s ease;
+}
+
+.caderno-rato:hover {
+    transform: translate(-50%, -50%) scale(1.3);
+}
+
+.caderno-rato img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* CADERNO CADEADO */
+.caderno-cadeado {
+    position: absolute;
+    width: 126px;
+    left: 58%;
+    top: 47%;
+    transform: translate(-50%, -50%);
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.2s ease;
+}
+
+.caderno-cadeado:hover {
+    transform: translate(-50%, -50%) scale(1.3);
+}
+
+.caderno-cadeado img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* AMPLIAÇÃO DOS CADERNOS */
+.overlay,
+.cadernorato-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 400;
+}
+.cadernocadeado-grande-wrapper {
+    position: relative;
+    width: min(900px, 85vw);
+    max-height: 85vh;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cadernocadeado-grande {
+    display: block;
+    width: 100%;
+    max-height: 85vh;
+    object-fit: contain;
+}
+.cadernorato-grande {
+    width: min(900px, 85vw);
+    max-height: 85vh;
+    object-fit: contain;
+    display: block;
+}
+
+/* BOTÃO FECHAR CADERNO CADEADO */
+.botao-fechar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(20, 20, 20, 0.9);
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.botao-fechar:hover {
+    background: #be123c;
+}
+
+/* BOTÃO FECHAR CADERNO DOS RATOS */
+.rato-fechar {
+    position: fixed;
+    top: 20px;
+    right: 25px;
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(20, 20, 20, 0.9);
+    color: #c5a8ed;
+    font-size: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rato-fechar:hover {
+    background: #be123c;
+}
+
+/* CADEADO */
+.cadeado-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(420px, 85%);
+    padding: 25px;
+    background: rgba(15, 15, 15, 0.94);
+    border: 2px solid rgba(180, 150, 220, 0.55);
+    border-radius: 12px;
+    text-align: center;
+    color: #c5a8ed;
+    z-index: 150;
+}
+.cadeado-container h2 {
+    margin: 0 0 10px;
+    font-size: 20px;
+    color: #c5a8ed;
+    letter-spacing: 2px;
+}
+.cadeado-container p {
+    font-size: 13px;
+    color: #c5a8ed;
+}
+
+/* CONJUNTO DAS ROLDANAS */
+.roldanas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.roldana {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 75px;
+    padding: 8px;
+    background: #292929;
+    border: 2px solid rgba(180, 150, 220, 0.55);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+.roldana button {
+    width: 100%;
+    height: 35px;
+    border: none;
+    background: transparent;
+    color: #c5a8ed;
+    font-size: 23px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.roldana button:hover {
+    color: white;
+    transform: scale(1.2);
+}
+
+.numero-roldana {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 65px;
+    background: rgba(15, 15, 20, 0.92);
+    border: 1px solid rgba(180, 150, 220, 0.55);
+    border-radius: 5px;
+    color: #c5a8ed;
+    font-family: 'Courier New', monospace;
+    font-size: 38px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* BOTÃO VERIFICAR */
+.botao-verificar {
+    width: 100%;
+    padding: 13px;
+    background: rgba(15, 15, 20, 0.92);
+    border: 1px solid rgba(180, 150, 220, 0.55);
+    border-radius: 6px;
+    color: #c5a8ed;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.botao-verificar:hover {
+    background: rgba(75, 55, 100, 0.95);
+    transform: scale(1.03);
+}
+
+/* MENSAGEM DO CADEADO */
+#mensagemCadeado {
+    min-height: 20px;
+    margin: 15px 0 0;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#mensagemCadeado.sucesso {
+    color: #75d68a;
+}
+
+#mensagemCadeado.erro {
+    color: #ed7777;
+}
+
+.cadeado-container.destravado {
+    border-color: #75d68a;
+}
+
+/* INTERFACE DE DIÁLOGO */
+.interface-dialogo {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: none;
+    pointer-events: none;
+}
+
+/* IMAGEM DA PERSONAGEM */
+.imagem-personagem {
+    position: absolute;
+    right: -15%;
+    bottom: 8;
+    height: 200%;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: bottom;
+    filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.6));
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* CAIXA DE DIÁLOGO */
+.caixa-dialogo {
+    position: absolute;
+    left: 3%;
+    bottom: 3%;
+    width: 94%;
+    min-height: 160px;
+    padding: 25px 30px;
+    background: rgba(10, 10, 15, 0.92);
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    pointer-events: auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+/* NOME DA PERSONAGEM */
+.nome-personagem {
+    position: absolute;
+    top: -22px;
+    left: 30px;
+    padding: 8px 25px;
+    background: #302c3b;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* TEXTO DA FALA */
+.texto-dialogo {
+    font-size: 19px;
+    line-height: 1.6;
+    margin-top: 5px;
+    max-width: 75%;
+}
+
+/* INDICADOR PARA CONTINUAR */
+.indicador-dialogo {
+    position: absolute;
+    right: 25px;
+    bottom: 15px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    animation: piscarDialogo 1.5s infinite;
+}
+
+@keyframes piscarDialogo {
+    0%, 100% {
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* OBJETIVOS DO JOGO */
+.objetivos-container {
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    z-index: 350;
+    font-family: Arial, sans-serif;
+}
+
+/* OBJETIVO PRINCIPAL */
+.objetivo-jogo {
+    position: relative;
+    width: 300px;
+    min-height: 110px;
+    padding: 18px 20px;
+    background: rgba(15, 15, 20, 0.92);
+    border: 1px solid rgba(180, 150, 220, 0.55);
+    border-left: 4px solid #9b7acb;
+    border-radius: 6px;
+    color: white;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-20px);
+    transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    visibility 0.3s;
+}
+
+/* OBJETIVO VISÍVEL */
+.objetivo-jogo.visivel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+/* CABEÇALHO */
+.objetivo-cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    color: #c5a8ed;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+/* BOTÃO MINIMIZAR */
+.objetivo-cabecalho button {
+    width: 25px;
+    height: 25px;
+    border: none;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.objetivo-cabecalho button:hover {
+    background: rgba(155, 122, 203, 0.5);
+}
+
+/* TEXTO DO OBJETIVO */
+.objetivo-jogo p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #e5e5e5;
+}
+
+/* OBJETIVO MINIMIZADO */
+.objetivo-jogo.minimizado {
+    display: none;
+}
+
+/* ABA PARA REABRIR */
+.objetivo-aba {
+    display: none;
+    width: 125px;
+    padding: 12px 15px;
+    background: rgba(15, 15, 20, 0.92);
+    border: 1px solid rgba(180, 150, 220, 0.55);
+    border-left: 4px solid #9b7acb;
+    border-radius: 5px;
+    color: #c5a8ed;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* MOSTRAR ABA */
+.objetivo-aba.visivel {
+    display: block;
+}
+
+/* EFEITO AO PASSAR O MOUSE */
+.objetivo-aba:hover {
+    background: rgba(75, 55, 100, 0.95);
+    transform: translateX(4px);
+}

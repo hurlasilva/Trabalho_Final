@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santa Glória - Cenario 3</title>
+
+    <link rel="stylesheet" href="../css/cenario3.css">
+
+    <script>
+        if (new URLSearchParams(window.location.search).get("fadein") === "1") {
+            document.documentElement.classList.add("fade-in-historia");
+        }
+    </script>
+</head>
+<body>
+
+    <!-- MÚSICA DE FUNDO -->
+    <audio id="musicaFundo" loop style="display: none;">
+        <source src="../assets/audio/audio.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- CENÁRIO -->
+    <div id="cenario">
+
+        <!-- CADERNO RATO -->
+        <button type="button" class="caderno-rato" onclick="abrirCadernoRato()">
+        <img src="../assets/imagens/caderno.png" alt="Caderno Rato">
+        </button>
+
+        <!-- CADERNO CADEADO -->
+        <button type="button" class="caderno-cadeado" onclick="abrirCadernoCadeado()">
+        <img src="../assets/imagens/cadernocadeado.png" alt="Caderno Cadeado">
+        </button>
+
+    </div>
+
+
+    <!-- OBJETIVOS DO JOGO -->
+    <div class="objetivos-container">
+
+        <!-- OBJETIVO PRINCIPAL -->
+        <div class="objetivo-jogo" id="objetivoJogo">
+
+            <div class="objetivo-cabecalho">
+                <span>OBJETIVO</span>
+                <button type="button" id="minimizarObjetivo" aria-label="Minimizar objetivo">−</button>
+            </div>
+            <p>Descubra qual a senha para abrir o caderno.</p>
+
+        </div>
+
+        <!-- ABA PARA REABRIR O OBJETIVO -->
+        <div class="objetivo-aba" id="abaObjetivo"> OBJETIVO + </div>
+
+    </div>
+
+    <!-- INTERFACE DE DIÁLOGO -->
+    <div id="interfaceDialogo" class="interface-dialogo">
+
+        <img src="../assets/imagens/personagem.png" 
+             alt="Personagem"
+             id="imagemPersonagem"
+             class="imagem-personagem">
+
+        <div class="caixa-dialogo">
+
+            <div class="nome-personagem">Personagem</div>
+            <div class="texto-dialogo"></div>
+
+            <div class="indicador-dialogo">
+                Clique ou pressione ENTER para continuar ▼
+            </div>
+        </div>
+    </div>
+
+
+    <!-- CADERNO CADEADO AMPLIADO -->
+
+    <div class="overlay" id="cadernocadeadoOverlay">
+
+        <div class="cadernocadeado-grande-wrapper">
+
+            <!-- IMAGEM DO CADERNO -->
+            <img src="../assets/imagens/cadernocadeado.png"
+                 class="cadernocadeado-grande"
+                 alt="Caderno cadeado ampliado">
+
+
+            <!-- CADEADO DE COMBINAÇÃO -->
+            <div class="cadeado-container">
+                <div class="roldanas">
+
+                    <!-- PRIMEIRA ROLDANA -->
+                    <div class="roldana">
+
+                        <button type="button" onclick="girarRoldana(0, -1)" aria-label="Diminuir primeiro número">
+                            ▲  </button>
+
+                        <div class="numero-roldana" id="roldana0">0</div>
+
+                        <button type="button" onclick="girarRoldana(0, 1)" aria-label="Aumentar primeiro número">
+                            ▼ </button>
+                    </div>
+
+                    <!-- SEGUNDA ROLDANA -->
+                    <div class="roldana">
+
+                        <button type="button" onclick="girarRoldana(1, -1)" aria-label="Diminuir segundo número">
+                            ▲ </button>
+
+                        <div class="numero-roldana" id="roldana1">0</div>
+
+                        <button type="button" onclick="girarRoldana(1, 1)" aria-label="Aumentar segundo número">
+                            ▼ </button>
+                    </div>
+
+
+                    <!-- TERCEIRA ROLDANA -->
+                    <div class="roldana">
+
+                        <button type="button" onclick="girarRoldana(2, -1)" aria-label="Diminuir terceiro número">
+                            ▲ </button>
+
+                        <div class="numero-roldana" id="roldana2">0</div>
+
+                        <button type="button" onclick="girarRoldana(2, 1)" aria-label="Aumentar terceiro número">
+                            ▼ </button>
+                    </div>
+                </div>
+
+                <!-- BOTÃO VERIFICAR -->
+                <button type="button" class="botao-verificar" onclick="verificarCombinacao()">
+                    VERIFICAR
+                </button>
+
+                <!-- MENSAGEM -->
+                <p id="mensagemCadeado"></p>
+            </div>
+
+            <!-- FECHAR CADERNO CADEADO -->
+            <button type="button" class="botao-fechar" onclick="fecharCadernoCadeado()" aria-label="Fechar caderno">×</button>
+        </div>
+    </div>
+
+    <!-- CADERNO RATO AMPLIADO -->
+
+    <div class="cadernorato-overlay" id="cadernoratoOverlay">
+
+        <img src="../assets/imagens/caderno.png" class="cadernorato-grande" alt="Caderno rato ampliado">
+
+        <!-- FECHAR CADERNO RATO -->
+        <button type="button" class="rato-fechar" onclick="fecharCadernoRato()" aria-label="Fechar caderno">×</button>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="../js/sistemas/musica.js"></script>
+    <script src="../js/sistemas/configuracoes.js"></script>
+    <script src="../js/cenario3/dialogo.js"></script>
+    <script src="../js/historia/objetivos.js"></script>
+    <script src="../js/cenario3/caderno.js"></script>
+
+</body>
+</html>
