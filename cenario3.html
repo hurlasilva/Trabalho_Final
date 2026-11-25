@@ -25,17 +25,22 @@
     <div id="cenario">
 
         <!-- CADERNO RATO -->
-        <button type="button" class="caderno-rato" onclick="abrirCadernoRato()">
-        <img src="../assets/imagens/caderno.png" alt="Caderno Rato">
+        <button type="button" class="caderno-rato"
+            onclick="abrirCadernoRato()">
+
+            <img src="../assets/imagens/caderno.png"
+                 alt="Caderno Rato">
         </button>
 
         <!-- CADERNO CADEADO -->
-        <button type="button" class="caderno-cadeado" onclick="abrirCadernoCadeado()">
-        <img src="../assets/imagens/cadernocadeado.png" alt="Caderno Cadeado">
+        <button type="button" class="caderno-cadeado"
+            onclick="abrirCadernoCadeado()">
+
+            <img src="../assets/imagens/cadernocadeado.png"
+                 alt="Caderno Cadeado">
         </button>
 
     </div>
-
 
     <!-- OBJETIVOS DO JOGO -->
     <div class="objetivos-container">
@@ -45,48 +50,50 @@
 
             <div class="objetivo-cabecalho">
                 <span>OBJETIVO</span>
-                <button type="button" id="minimizarObjetivo" aria-label="Minimizar objetivo">−</button>
-            </div>
-            <p>Descubra qual a senha para abrir o caderno.</p>
 
+                <button type="button"
+                    id="minimizarObjetivo"
+                    aria-label="Minimizar objetivo">−</button>
+            </div>
+
+            <p>Descubra qual a senha para abrir o caderno.</p>
         </div>
 
         <!-- ABA PARA REABRIR O OBJETIVO -->
-        <div class="objetivo-aba" id="abaObjetivo"> OBJETIVO + </div>
+        <div class="objetivo-aba" id="abaObjetivo">
+            OBJETIVO +
+        </div>
 
     </div>
 
     <!-- INTERFACE DE DIÁLOGO -->
     <div id="interfaceDialogo" class="interface-dialogo">
 
-        <img src="../assets/imagens/personagem.png" 
-             alt="Personagem"
+        <!-- IMAGEM ÚNICA DO PERSONAGEM -->
+        <img src=""
+             alt=""
              id="imagemPersonagem"
              class="imagem-personagem">
 
         <div class="caixa-dialogo">
-
             <div class="nome-personagem">Personagem</div>
             <div class="texto-dialogo"></div>
-
             <div class="indicador-dialogo">
                 Clique ou pressione ENTER para continuar ▼
             </div>
+
         </div>
     </div>
 
-
     <!-- CADERNO CADEADO AMPLIADO -->
-
     <div class="overlay" id="cadernocadeadoOverlay">
 
         <div class="cadernocadeado-grande-wrapper">
 
             <!-- IMAGEM DO CADERNO -->
-            <img src="../assets/imagens/cadernocadeado.png"
+            <img src="../assets/imagens/cadernocadeadoampliado.png"
                  class="cadernocadeado-grande"
                  alt="Caderno cadeado ampliado">
-
 
             <!-- CADEADO DE COMBINAÇÃO -->
             <div class="cadeado-container">
@@ -94,44 +101,59 @@
 
                     <!-- PRIMEIRA ROLDANA -->
                     <div class="roldana">
-
-                        <button type="button" onclick="girarRoldana(0, -1)" aria-label="Diminuir primeiro número">
-                            ▲  </button>
+                        <button type="button"
+                            onclick="girarRoldana(0, -1)"
+                            aria-label="Diminuir primeiro número">
+                            ▲
+                        </button>
 
                         <div class="numero-roldana" id="roldana0">0</div>
-
-                        <button type="button" onclick="girarRoldana(0, 1)" aria-label="Aumentar primeiro número">
-                            ▼ </button>
+                        <button type="button"
+                            onclick="girarRoldana(0, 1)"
+                            aria-label="Aumentar primeiro número">
+                            ▼
+                        </button>
                     </div>
 
                     <!-- SEGUNDA ROLDANA -->
                     <div class="roldana">
 
-                        <button type="button" onclick="girarRoldana(1, -1)" aria-label="Diminuir segundo número">
-                            ▲ </button>
+                        <button type="button"
+                            onclick="girarRoldana(1, -1)"
+                            aria-label="Diminuir segundo número">
+                            ▲
+                        </button>
 
                         <div class="numero-roldana" id="roldana1">0</div>
-
-                        <button type="button" onclick="girarRoldana(1, 1)" aria-label="Aumentar segundo número">
-                            ▼ </button>
+                        <button type="button"
+                            onclick="girarRoldana(1, 1)"
+                            aria-label="Aumentar segundo número">
+                            ▼
+                        </button>
                     </div>
-
 
                     <!-- TERCEIRA ROLDANA -->
                     <div class="roldana">
 
-                        <button type="button" onclick="girarRoldana(2, -1)" aria-label="Diminuir terceiro número">
-                            ▲ </button>
+                        <button type="button"
+                            onclick="girarRoldana(2, -1)"
+                            aria-label="Diminuir terceiro número">
+                            ▲
+                        </button>
 
                         <div class="numero-roldana" id="roldana2">0</div>
-
-                        <button type="button" onclick="girarRoldana(2, 1)" aria-label="Aumentar terceiro número">
-                            ▼ </button>
+                        <button type="button"
+                            onclick="girarRoldana(2, 1)"
+                            aria-label="Aumentar terceiro número">
+                            ▼
+                        </button>
                     </div>
                 </div>
 
                 <!-- BOTÃO VERIFICAR -->
-                <button type="button" class="botao-verificar" onclick="verificarCombinacao()">
+                <button type="button"
+                    class="botao-verificar"
+                    onclick="verificarCombinacao()">
                     VERIFICAR
                 </button>
 
@@ -140,19 +162,53 @@
             </div>
 
             <!-- FECHAR CADERNO CADEADO -->
-            <button type="button" class="botao-fechar" onclick="fecharCadernoCadeado()" aria-label="Fechar caderno">×</button>
+            <button type="button"
+                class="botao-fechar"
+                onclick="fecharCadernoCadeado()"
+                aria-label="Fechar caderno">
+                ×
+            </button>
+
         </div>
     </div>
 
     <!-- CADERNO RATO AMPLIADO -->
-
     <div class="cadernorato-overlay" id="cadernoratoOverlay">
 
-        <img src="../assets/imagens/caderno.png" class="cadernorato-grande" alt="Caderno rato ampliado">
+        <img src="../assets/imagens/cadernoampliado.png"
+             class="cadernorato-grande"
+             alt="Caderno rato ampliado"
+             onclick="AbrirCadernoRato2">
 
         <!-- FECHAR CADERNO RATO -->
-        <button type="button" class="rato-fechar" onclick="fecharCadernoRato()" aria-label="Fechar caderno">×</button>
+        <button type="button"
+            class="rato-fechar"
+            onclick="fecharCadernoRato()"
+            aria-label="Fechar caderno">
+            ×
+        </button>
+    </div>
 
+    <!-- NOVO CADERNO DESBLOQUEADO -->
+    <div class="overlay" id="cadernoDesbloqueadoOverlay">
+
+        <div class="caderno-desbloqueado-wrapper">
+
+            <!-- IMAGEM DO NOVO CADERNO -->
+            <img src="../assets/imagens/caderno_aberto.png" 
+                 class="caderno-desbloqueado-grande"
+                 alt="Novo caderno desbloqueado" >
+            
+            <img src="../assets/imagens/cartafechada.png" class="cartafechada" alt="Carta fechada" onclick="AbrirCarta">
+
+            <!-- FECHAR NOVO CADERNO -->
+            <button type="button"
+                class="botao-fechar"
+                onclick="fecharCadernoDesbloqueado()"
+                aria-label="Fechar novo caderno">
+                ×
+            </button>
+        </div>
     </div>
 
     <!-- JAVASCRIPT -->

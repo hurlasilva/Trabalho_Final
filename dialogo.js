@@ -1,7 +1,3 @@
-/* ==========================================
-   SISTEMA DE DIÁLOGOS - SANTA GLÓRIA
-========================================== */
-
 // ELEMENTOS DA INTERFACE
 const interfaceDialogo = document.getElementById("interfaceDialogo");
 const imagemPersonagem = document.getElementById("imagemPersonagem");
@@ -12,46 +8,42 @@ const textoDialogo = document.querySelector(".texto-dialogo");
 let falaAtual = 0;
 let dialogoAtivo = false;
 
-// ==========================================
 // LISTA DE FALAS
-// ==========================================
 const falas = [
-     {
+    {
         nome: "Amélia",
         imagem: "../assets/imagens/personagem.png",
-        texto: "Ah que bom que conseguir entra!"
-    },
-     {
-        nome: "Amélia",
-        imagem: "../assets/imagens/personagem.png",
-        texto: "..quem será que é?"
+        texto: "Ah, que bom que consegui entrar!"
     },
     {
-        imagem: "../assets/imagens/dinalva.png"
+        nome: "Amélia",
+        imagem: "../assets/imagens/personagem.png",
+        texto: "... Quem será que é?"
+    },
+    {
+        nome: "Enfermeira",
+        imagem: "../assets/imagens/Iara.png",
+        texto: "Olá! Posso ajudar?"
     },
     {
         nome: "Amélia",
         imagem: "../assets/imagens/personagem.png",
         texto: "Olha só, encontrei! Obrigada pela ajuda."
     },
-
     {
         nome: "Enfermeira",
-        imagem: "../assets/imagens/dinalva.png",
+        imagem: "../assets/imagens/Iara.png",
         texto: "Disponha. Posso ver as horas em seu relógio?"
     },
     {
         nome: "Enfermeira",
-        imagem: "../assets/imagens/dinalva.png",
-        texto: "Disponha. Posso ver as horas em seu relógio?"
+        imagem: "../assets/imagens/Iara.png",
+        texto: "Preciso conferir uma informação."
     }
 ];
 
-// ==========================================
 // MOSTRAR UMA FALA
-// ==========================================
 function mostrarFala() {
-
     if (falaAtual >= falas.length) {
         finalizarDialogo();
         return;
@@ -61,27 +53,24 @@ function mostrarFala() {
 
     nomePersonagem.textContent = fala.nome;
     textoDialogo.textContent = fala.texto;
+    imagemPersonagem.style.display = "none";
     imagemPersonagem.src = fala.imagem;
     imagemPersonagem.alt = fala.nome;
+    imagemPersonagem.style.display = "block";
 }
 
-// ==========================================
 // INICIAR DIÁLOGO
-// ==========================================
 function iniciarDialogo() {
     falaAtual = 0;
     dialogoAtivo = true;
-
+    imagemPersonagem.style.display = "none";
     interfaceDialogo.style.display = "block";
 
     mostrarFala();
 }
 
-// ==========================================
 // AVANÇAR PARA A PRÓXIMA FALA
-// ==========================================
 function proximaFala() {
-
     if (!dialogoAtivo) return;
 
     falaAtual++;
@@ -89,25 +78,19 @@ function proximaFala() {
     mostrarFala();
 }
 
-// ==========================================
 // FINALIZAR DIÁLOGO
-// ==========================================
 function finalizarDialogo() {
     dialogoAtivo = false;
-
     interfaceDialogo.style.display = "none";
+    imagemPersonagem.style.display = "none";
 
     falaAtual = 0;
 }
 
-// ==========================================
 // AVANÇAR COM CLIQUE
-// ==========================================
 document.addEventListener("click", function(event) {
 
     if (!dialogoAtivo) return;
-
-    // Não avança ao interagir com botões, campos ou overlays.
     if (
         event.target.closest("button") ||
         event.target.closest("input") ||
@@ -118,12 +101,9 @@ document.addEventListener("click", function(event) {
     }
 
     proximaFala();
-
 });
 
-// ==========================================
 // AVANÇAR COM ENTER OU ESPAÇO
-// ==========================================
 document.addEventListener("keydown", function(event) {
 
     if (!dialogoAtivo) return;
@@ -150,9 +130,7 @@ document.addEventListener("keydown", function(event) {
     }
 });
 
-// ==========================================
 // AGUARDAR O FADE-IN
-// ==========================================
 window.addEventListener("load", function() {
 
     const possuiFade = document.documentElement
