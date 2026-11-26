@@ -145,7 +145,7 @@ function abrirCadernoRato2() {
 
 /* FECHAR CADERNO RATO */
 function fecharCadernoRato() {
-    document.getElementById("cadernoOverlay").style.display = "none";
+    document.getElementById("cadernoratoOverlay").style.display = "none";
 }
 const paginasRato = [
 
@@ -167,6 +167,17 @@ function abrirCadernoDesbloqueado() {
 /* FECHAR NOVO CADERNO DESBLOQUEADO */
 function fecharCadernoDesbloqueado() {
     document.getElementById("cadernoDesbloqueadoOverlay").style.display = "none";
+}
+/* ABRIR CARTA ABERTA */
+function abrirCarta() {
+     document.getElementById("cadernoDesbloqueadoOverlay").style.display = "none";
+    document.getElementById("cartaabertaOverlay").style.display = "flex";
+}
+
+
+/* FECHAR CARTA ABERTA */
+function fecharCartaAberta() {
+    document.getElementById("cartaabertaOverlay").style.display = "none";
 }
 
 /* FECHAR COM ESC */

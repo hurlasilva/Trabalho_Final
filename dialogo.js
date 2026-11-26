@@ -115,7 +115,14 @@ const falas = [
                 texto: "...olha só, encontrei! Muito obrigada pela ajuda.", 
 
                 imagemDestaque: "../assets/imagens/papel.png",
+                  falas: [
 
+                    {
+                        nome: "Enfermeira",
+                        imagem: "../assets/imagens/Iara.png",
+                        texto: "Disponha."
+                    }
+                ]
             },
 
             {
@@ -157,7 +164,7 @@ const falas = [
     {
         nome: "Enfermeira",
         imagem: "../assets/imagens/Iara.png",
-        texto: "Nossa, olha a hora! Preciso bater meu ponto.."
+        texto: "Nossa, olha a hora! Preciso ir para meu intervalo.."
     },
 
     {
@@ -168,10 +175,7 @@ const falas = [
 
 ];
 
-// ========================================
 // MOSTRAR UMA FALA
-// ========================================
-
 function mostrarFala() {
 
     const dialogo = obterDialogoAtual();
@@ -235,10 +239,7 @@ function mostrarFala() {
 
 }
 
-// ========================================
 // INICIAR DIÁLOGO ORIGINAL
-// ========================================
-
 function iniciarDialogo() {
 
     // LIMPAR SEQUÊNCIAS ANTERIORES

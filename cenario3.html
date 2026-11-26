@@ -198,8 +198,8 @@
             <img src="../assets/imagens/caderno_aberto.png" 
                  class="caderno-desbloqueado-grande"
                  alt="Novo caderno desbloqueado" >
-            
-            <img src="../assets/imagens/cartafechada.png" class="cartafechada" alt="Carta fechada" onclick="AbrirCarta">
+
+            <img src="../assets/imagens/cartafechada.png" class="carta-fechada" alt="" onclick="abrirCarta()">
 
             <!-- FECHAR NOVO CADERNO -->
             <button type="button"
@@ -210,6 +210,21 @@
             </button>
         </div>
     </div>
+
+     <div class="overlay" id="cartaabertaOverlay">
+
+        <div class="carta-aberta-wrapper">
+            <img src="../assets/imagens/cartaaberta.png" class="carta-aberta">
+
+             <!-- FECHAR NOVO CADERNO -->
+            <button type="button"
+                class="botao-fechar"
+                onclick="fecharCartaAberta()"
+                aria-label="Fechar carta aberta">
+                ×
+            </button>
+        </div>
+     </div>
 
     <!-- JAVASCRIPT -->
     <script src="../js/sistemas/musica.js"></script>
