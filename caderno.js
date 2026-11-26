@@ -143,6 +143,20 @@ function abrirCadernoRato2() {
     document.getElementById("cadernoratoOverlay").style.display = "flex";
 }
 
+/* FECHAR CADERNO RATO */
+function fecharCadernoRato() {
+    document.getElementById("cadernoOverlay").style.display = "none";
+}
+const paginasRato = [
+
+    "../assets/imagens/exemplo_pag1.png",
+
+    "../assets/imagens/pagina2.png",
+
+    "../assets/imagens/pagina3.png"
+
+];
+
 /* ABRIR NOVO CADERNO DESBLOQUEADO */
 function abrirCadernoDesbloqueado() {
     if (!cadeadoDestravado) return;

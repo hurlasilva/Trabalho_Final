@@ -25,7 +25,6 @@ body {
     font-family: Arial, sans-serif;
 }
 
-
 /* ========================================
    CENÁRIO
 ======================================== */
@@ -36,9 +35,9 @@ body {
     /* PROPORÇÃO FIXA DO CENÁRIO: 16:9 */
     aspect-ratio: 16 / 9;
 
-    /* AJUSTA O CENÁRIO AO TAMANHO DA TELA */
-    width: min(100vw, 177.7778vh);
-    height: min(100vh, 56.25vw);
+    /* OCUPA TODA A TELA, SEM FAIXAS PRETAS */
+    width: max(100vw, 177.7778vh);
+    height: max(100vh, 56.25vw);
 
     /* CENTRALIZA O CENÁRIO */
     top: 50%;
@@ -46,6 +45,7 @@ body {
     transform: translate(-50%, -50%);
 
     background-image: url('../assets/imagens/fundo_3.png');
+
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -676,4 +676,114 @@ body {
     background: rgba(75, 55, 100, 0.95);
 
     transform: translateX(4px);
+}
+
+
+/* ========================================
+   OPÇÕES DE DIÁLOGO
+======================================== */
+
+.opcoes-dialogo {
+
+    display: none;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    width: 75%;
+
+    margin-top: 20px;
+
+}
+
+.opcoes-dialogo button {
+
+    width: 100%;
+
+    padding: 12px 15px;
+
+    background: rgba(45, 40, 60, 0.95);
+
+    border: 1px solid rgba(180, 150, 220, 0.55);
+
+    border-radius: 6px;
+
+    color: white;
+
+    font-size: 15px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+.opcoes-dialogo button:hover {
+
+    background: rgba(100, 75, 130, 0.95);
+
+    transform: translateX(5px);
+
+}
+
+
+/* ========================================
+   APRESENTAÇÃO DE IMAGENS
+======================================== */
+
+.apresentacao-imagem {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.95);
+
+    z-index: 500;
+
+}
+
+.apresentacao-imagem img {
+
+    max-width: 85vw;
+
+    max-height: 85vh;
+
+    object-fit: contain;
+
+}
+
+.apresentacao-imagem button {
+
+    position: absolute;
+
+    top: 20px;
+
+    right: 25px;
+
+    width: 42px;
+
+    height: 42px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(20, 20, 20, 0.9);
+
+    color: white;
+
+    font-size: 30px;
+
+    cursor: pointer;
+
 }
