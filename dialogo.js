@@ -1,8 +1,4 @@
-
-// ========================================
 // ELEMENTOS DA INTERFACE
-// ========================================
-
 const interfaceDialogo = document.getElementById("interfaceDialogo");
 const imagemPersonagem = document.getElementById("imagemPersonagem");
 const nomePersonagem = document.querySelector(".nome-personagem");
@@ -10,10 +6,9 @@ const textoDialogo = document.querySelector(".texto-dialogo");
 const caixaDialogo = document.querySelector(".caixa-dialogo");
 const indicadorDialogo = document.querySelector(".indicador-dialogo");
 
-// ========================================
-// CRIAR ÁREA DAS OPÇÕES
-// ========================================
+fala2 = 0;
 
+// CRIAR ÁREA DAS OPÇÕES
 const opcoesDialogo = document.createElement("div");
 
 opcoesDialogo.id = "opcoesDialogo";
@@ -21,10 +16,7 @@ opcoesDialogo.className = "opcoes-dialogo";
 
 caixaDialogo.appendChild(opcoesDialogo);
 
-// ========================================
 // CRIAR ÁREA DE APRESENTAÇÃO DE IMAGEM
-// ========================================
-
 const apresentacaoImagem = document.createElement("div");
 
 apresentacaoImagem.id = "apresentacaoImagem";
@@ -45,78 +37,50 @@ document.body.appendChild(apresentacaoImagem);
 const imagemDestaque = document.getElementById("imagemDestaque");
 const botaoFecharImagem = document.getElementById("fecharImagemDestaque");
 
-// ========================================
 // CONTROLE DA CONVERSA
-// ========================================
-
 let dialogoAtivo = false;
 let escolhaAtiva = false;
 let imagemDestaqueAtiva = false;
-
-// Armazena uma ação que deverá acontecer
-// depois que o jogador fechar uma imagem.
 let acaoAposImagem = null;
 
-// ========================================
 // REGISTRO DAS ESCOLHAS DO JOGADOR
-// ========================================
-
 const escolhasJogador = {
     confiancaEnfermeira: 0,
     abriuCaderno: false,
     encontrouFotografia: false
 };
 
-// ========================================
 // CONTROLE DAS SEQUÊNCIAS DE DIÁLOGO
-// ========================================
-
-// Cada sequência possui seu próprio array de falas
-// e seu próprio índice.
-//
-// Isso permite entrar em uma conversa alternativa
-// e depois retornar à história principal.
-
 let pilhaDialogos = [];
 
 // Retorna a sequência que está sendo exibida.
 function obterDialogoAtual() {
-
     return pilhaDialogos[pilhaDialogos.length - 1];
 }
 
-// ========================================
 // LISTA ORIGINAL DE FALAS
-// ========================================
-
 const falas = [
-
     {
         nome: "Enfermeira",
         imagem: "../assets/imagens/Iara.png",
         texto: "Pode procurar a vontade, mas tenha cuidado"
     },
-
     {
         nome: "Amélia",
         imagem: "../assets/imagens/personagem.png",
         texto: "Certo, vou tomar cuidado..."
     },
-
     {
         nome: "Enfermeira",
         imagem: "../assets/imagens/Iara.png",
         texto: "Está conseguindo procurar?",
 
-        // ALTERNATIVAS DO JOGADOR
         opcoes: [
-
             {
-                texto: "...olha só, encontrei! Muito obrigada pela ajuda.", 
-
+                texto: "...olha só, encontrei! Muito obrigada pela ajuda.",
                 imagemDestaque: "../assets/imagens/papel.png",
-                  falas: [
 
+                falas: [
                     {
                         nome: "Enfermeira",
                         imagem: "../assets/imagens/Iara.png",
@@ -124,11 +88,9 @@ const falas = [
                     }
                 ]
             },
-
             {
                 texto: "Sim, obrigada pela gentileza, mas acho que posso procurar sozinha.",
 
-                // DIÁLOGO EXCLUSIVO DESSA ALTERNATIVA
                 falas: [
 
                     {
@@ -136,37 +98,30 @@ const falas = [
                         imagem: "../assets/imagens/personagem.png",
                         texto: "Já está quase no fim da manhã, posso procurar sozinha se quiser..."
                     },
-
                     {
                         nome: "Enfermeira",
                         imagem: "../assets/imagens/Iara.png",
                         texto: "Fim da manhã?"
                     }
-
                 ]
             }
-
         ]
     },
-
     {
         nome: "Enfermeira",
         imagem: "../assets/imagens/Iara.png",
         texto: "Posso ver as horas em seu relógio?"
     },
-
     {
         nome: "Amélia",
         imagem: "../assets/imagens/personagem.png",
         texto: "Sim."
     },
-
     {
         nome: "Enfermeira",
         imagem: "../assets/imagens/Iara.png",
         texto: "Nossa, olha a hora! Preciso ir para meu intervalo.."
     },
-
     {
         nome: "Enfermeira",
         imagem: "../assets/imagens/Iara.png",
@@ -177,120 +132,68 @@ const falas = [
 
 // MOSTRAR UMA FALA
 function mostrarFala() {
-
     const dialogo = obterDialogoAtual();
 
-    // VERIFICAR SE A SEQUÊNCIA ATUAL TERMINOU
     if (!dialogo || dialogo.indice >= dialogo.falas.length) {
-
-        // SE EXISTIR UMA SEQUÊNCIA ANTERIOR,
-        // RETORNAR PARA ELA.
         if (pilhaDialogos.length > 1) {
-
             pilhaDialogos.pop();
 
             mostrarFala();
-
         } else {
-
             finalizarDialogo();
-
         }
-
         return;
     }
 
     const fala = dialogo.falas[dialogo.indice];
-
-    // ATUALIZAR INFORMAÇÕES DO PERSONAGEM
     nomePersonagem.textContent = fala.nome;
     textoDialogo.textContent = fala.texto;
-
-    // ATUALIZAR IMAGEM DO PERSONAGEM
     imagemPersonagem.style.display = "none";
-
     imagemPersonagem.src = fala.imagem;
     imagemPersonagem.alt = fala.nome;
-
     imagemPersonagem.style.display = "block";
-
-    // LIMPAR OPÇÕES ANTERIORES
     opcoesDialogo.innerHTML = "";
     opcoesDialogo.style.display = "none";
 
     escolhaAtiva = false;
 
-    // MOSTRAR INDICADOR DE CONTINUAÇÃO
     indicadorDialogo.style.display = "block";
 
-    // VERIFICAR SE A FALA POSSUI IMAGEM DE DESTAQUE
     if (fala.imagemDestaque) {
-
         abrirApresentacaoImagem(fala.imagemDestaque);
-
     }
-
-    // VERIFICAR SE A FALA POSSUI OPÇÕES
     if (fala.opcoes) {
-
         mostrarOpcoes(fala.opcoes);
-
     }
-
 }
 
 // INICIAR DIÁLOGO ORIGINAL
 function iniciarDialogo() {
-
-    // LIMPAR SEQUÊNCIAS ANTERIORES
     pilhaDialogos = [];
-
-    // ADICIONAR A HISTÓRIA PRINCIPAL
     pilhaDialogos.push({
-
         falas: falas,
         indice: 0
-
     });
 
     dialogoAtivo = true;
     escolhaAtiva = false;
-
     imagemPersonagem.style.display = "none";
-
     interfaceDialogo.style.display = "block";
 
     mostrarFala();
-
 }
 
-// ========================================
 // INICIAR DIÁLOGO PERSONALIZADO
-// ========================================
-
 function iniciarDialogoPersonalizado(novasFalas) {
 
     if (!Array.isArray(novasFalas)) {
-
         console.error("As falas precisam estar dentro de um array.");
-
         return;
     }
-
-    // SE O DIÁLOGO JÁ ESTIVER ATIVO,
-    // ADICIONAR UMA NOVA SEQUÊNCIA.
-    //
-    // A sequência anterior será preservada
-    // para que possamos retornar a ela.
-
     if (!dialogoAtivo) {
-
         pilhaDialogos = [];
-
         dialogoAtivo = true;
-
         interfaceDialogo.style.display = "block";
-
     }
 
     pilhaDialogos.push({
@@ -311,46 +214,29 @@ function iniciarDialogoPersonalizado(novasFalas) {
 
 }
 
-// ========================================
+
 // MOSTRAR OPÇÕES DE DIÁLOGO
-// ========================================
-
 function mostrarOpcoes(opcoes) {
-
     escolhaAtiva = true;
-
-    // ESCONDER INDICADOR DE CONTINUAÇÃO
     indicadorDialogo.style.display = "none";
-
     opcoesDialogo.innerHTML = "";
     opcoesDialogo.style.display = "flex";
 
-    // CRIAR UM BOTÃO PARA CADA ALTERNATIVA
     opcoes.forEach((opcao, indice) => {
-
         const botao = document.createElement("button");
-
         botao.type = "button";
         botao.textContent = opcao.texto;
 
         botao.addEventListener("click", function(event) {
-
             event.stopPropagation();
-
             escolherOpcao(indice, opcoes);
-
         });
-
         opcoesDialogo.appendChild(botao);
-
     });
 
 }
 
-// ========================================
 // ESCOLHER UMA OPÇÃO
-// ========================================
-
 function escolherOpcao(indice, opcoes) {
 
     if (!escolhaAtiva) return;
@@ -361,14 +247,8 @@ function escolherOpcao(indice, opcoes) {
 
     escolhaAtiva = false;
 
-    // ESCONDER AS ALTERNATIVAS
     opcoesDialogo.innerHTML = "";
     opcoesDialogo.style.display = "none";
-
-    // AVANÇAR A SEQUÊNCIA PRINCIPAL
-    //
-    // Assim, depois da alternativa,
-    // o jogo continuará na fala seguinte.
 
     const dialogo = obterDialogoAtual();
 
@@ -407,10 +287,10 @@ function escolherOpcao(indice, opcoes) {
 
     }
 
-    // EXECUTAR A ALTERNATIVA
     executarOpcao(opcaoEscolhida);
 
 }
+
 
 // ========================================
 // EXECUTAR CONSEQUÊNCIAS DA ALTERNATIVA
@@ -418,7 +298,6 @@ function escolherOpcao(indice, opcoes) {
 
 function executarOpcao(opcaoEscolhida) {
 
-    // VERIFICAR SE A OPÇÃO POSSUI SOM
     if (opcaoEscolhida.som) {
 
         reproduzirSomEExecutarOpcao(
@@ -429,10 +308,10 @@ function executarOpcao(opcaoEscolhida) {
         return;
     }
 
-    // CONTINUAR PARA AS PRÓXIMAS AÇÕES
     continuarOpcao(opcaoEscolhida);
 
 }
+
 
 // ========================================
 // CONTINUAR ALTERNATIVA APÓS O SOM
@@ -440,7 +319,6 @@ function executarOpcao(opcaoEscolhida) {
 
 function reproduzirSomEExecutarOpcao(arquivoSom, opcaoEscolhida) {
 
-    // VERIFICAR SE OS EFEITOS SONOROS ESTÃO ATIVOS
     if (localStorage.getItem("efeitosAtivos") === "false") {
 
         continuarOpcao(opcaoEscolhida);
@@ -448,14 +326,12 @@ function reproduzirSomEExecutarOpcao(arquivoSom, opcaoEscolhida) {
         return;
     }
 
-    // ESCONDER A INTERFACE DURANTE O SOM
     interfaceDialogo.style.display = "none";
 
     const som = new Audio(arquivoSom);
 
     som.volume = 1;
 
-    // EVITAR EXECUTAR A ALTERNATIVA MAIS DE UMA VEZ
     let somFinalizado = false;
 
     function finalizarSom() {
@@ -468,10 +344,8 @@ function reproduzirSomEExecutarOpcao(arquivoSom, opcaoEscolhida) {
 
     }
 
-    // INICIAR A ALTERNATIVA QUANDO O SOM TERMINAR
     som.addEventListener("ended", finalizarSom);
 
-    // CASO OCORRA ALGUM ERRO
     som.addEventListener("error", finalizarSom);
 
     const resultadoReproducao = som.play();
@@ -484,13 +358,13 @@ function reproduzirSomEExecutarOpcao(arquivoSom, opcaoEscolhida) {
 
 }
 
+
 // ========================================
 // CONTINUAR DEPOIS DA ESCOLHA
 // ========================================
 
 function continuarOpcao(opcaoEscolhida) {
 
-    // VERIFICAR SE A ALTERNATIVA POSSUI IMAGEM
     if (opcaoEscolhida.imagemDestaque) {
 
         abrirApresentacaoImagem(
@@ -506,7 +380,6 @@ function continuarOpcao(opcaoEscolhida) {
         return;
     }
 
-    // SE NÃO POSSUIR IMAGEM, INICIAR DIRETAMENTE
     iniciarRamificacao(opcaoEscolhida.falas || []);
 
 }
@@ -517,17 +390,11 @@ function continuarOpcao(opcaoEscolhida) {
 
 function iniciarRamificacao(novasFalas) {
 
-    // SE EXISTIR UMA CONVERSA ALTERNATIVA,
-    // ADICIONAR ESSA CONVERSA À PILHA.
-
     if (novasFalas.length > 0) {
 
         iniciarDialogoPersonalizado(novasFalas);
 
     } else {
-
-        // SE NÃO EXISTIR OUTRA CONVERSA,
-        // RETORNAR À HISTÓRIA PRINCIPAL.
 
         interfaceDialogo.style.display = "block";
 
@@ -537,30 +404,38 @@ function iniciarRamificacao(novasFalas) {
 
 }
 
+
 // ========================================
 // APRESENTAR IMAGEM AMPLIADA
 // ========================================
 
 function abrirApresentacaoImagem(caminho, aoFechar = null) {
 
+    // DEFINIR A IMAGEM QUE SERÁ APRESENTADA
     imagemDestaque.src = caminho;
 
+    imagemDestaque.alt = "Imagem de destaque da história";
+
+    // EXIBIR A CAMADA DE APRESENTAÇÃO
     apresentacaoImagem.style.display = "flex";
 
+    // BLOQUEAR O AVANÇO DO DIÁLOGO
     imagemDestaqueAtiva = true;
 
     // ARMAZENAR A AÇÃO QUE SERÁ EXECUTADA
-    // DEPOIS QUE O JOGADOR FECHAR A IMAGEM.
-
+    // DEPOIS QUE O JOGADOR FECHAR A IMAGEM
     acaoAposImagem = aoFechar;
 
 }
+
 
 // ========================================
 // FECHAR IMAGEM AMPLIADA
 // ========================================
 
 function fecharApresentacaoImagem() {
+
+    if (!imagemDestaqueAtiva) return;
 
     apresentacaoImagem.style.display = "none";
 
@@ -579,6 +454,7 @@ function fecharApresentacaoImagem() {
 
 }
 
+
 // BOTÃO PARA FECHAR A IMAGEM
 botaoFecharImagem.addEventListener("click", function(event) {
 
@@ -588,6 +464,7 @@ botaoFecharImagem.addEventListener("click", function(event) {
 
 });
 
+
 // ========================================
 // AVANÇAR PARA A PRÓXIMA FALA
 // ========================================
@@ -596,7 +473,6 @@ function proximaFala() {
 
     if (!dialogoAtivo) return;
 
-    // NÃO AVANÇAR SE EXISTIREM OPÇÕES OU IMAGEM ABERTA
     if (escolhaAtiva || imagemDestaqueAtiva) return;
 
     const dialogo = obterDialogoAtual();
@@ -606,6 +482,7 @@ function proximaFala() {
     mostrarFala();
 
 }
+
 
 // ========================================
 // FINALIZAR DIÁLOGO
@@ -626,12 +503,14 @@ function finalizarDialogo() {
 
     apresentacaoImagem.style.display = "none";
 
+    imagemDestaque.src = "";
+
     acaoAposImagem = null;
 
-    // LIMPAR TODAS AS SEQUÊNCIAS
     pilhaDialogos = [];
 
 }
+
 
 // ========================================
 // AVANÇAR COM CLIQUE
@@ -658,8 +537,9 @@ document.addEventListener("click", function(event) {
 
 });
 
+
 // ========================================
-// AVANÇAR COM ENTER OU ESPAÇO
+// AVANÇAR COM ENTER, ESPAÇO OU FECHAR COM ESC
 // ========================================
 
 document.addEventListener("keydown", function(event) {
@@ -674,6 +554,16 @@ document.addEventListener("keydown", function(event) {
         (quadroOverlay && quadroOverlay.style.display === "flex") ||
         (papelOverlay && papelOverlay.style.display === "flex")
     ) {
+
+        return;
+    }
+
+    // FECHAR IMAGEM DE DESTAQUE COM ESC
+    if (imagemDestaqueAtiva && event.key === "Escape") {
+
+        event.preventDefault();
+
+        fecharApresentacaoImagem();
 
         return;
     }
@@ -696,6 +586,41 @@ document.addEventListener("keydown", function(event) {
     }
 
 });
+
+// DIÁLOGO APÓS ENCONTRAR TODAS AS PISTAS
+function iniciarDialogoPistas() {
+
+    const falasPistas = [
+
+        // PRIMEIRA FALA DE LIDIA
+        {
+            nome: "Lidia",
+            imagem: "../assets/imagens/Iara.png",
+            texto: "Ei? Você! Entrega isso aqui pra Dorothy.",
+
+            // IMAGEM QUE APARECE EM DESTAQUE
+            
+        },
+
+        {
+            imagemDestaque: "../assets/imagens/cartalidia.png",
+            nome: "Lidia",
+            imagem: "../assets/imagens/Iara.png",
+            texto: "A Iara foi embora e eu tô sem tempo, aquela louca do quarto 096 fugiu de novo!"
+        },
+
+        {
+            nome: "Amélia",
+            imagem: "../assets/imagens/personagem.png",
+            texto: "Preciso organizar todas essas pistas e descobrir o que fazer agora."
+        }
+
+    ];
+
+    iniciarDialogoPersonalizado(falasPistas);
+
+}
+
 
 // ========================================
 // AGUARDAR O FADE-IN

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -40,12 +39,15 @@
                  alt="Caderno Cadeado">
         </button>
 
+        <img src="../assets/imagens/amarelo.png"
+             class="amarelo"
+             alt="Flor amarela">
+
     </div>
 
     <!-- OBJETIVOS DO JOGO -->
     <div class="objetivos-container">
 
-        <!-- OBJETIVO PRINCIPAL -->
         <div class="objetivo-jogo" id="objetivoJogo">
 
             <div class="objetivo-cabecalho">
@@ -59,7 +61,6 @@
             <p>Descubra qual a senha para abrir o caderno.</p>
         </div>
 
-        <!-- ABA PARA REABRIR O OBJETIVO -->
         <div class="objetivo-aba" id="abaObjetivo">
             OBJETIVO +
         </div>
@@ -69,7 +70,6 @@
     <!-- INTERFACE DE DIÁLOGO -->
     <div id="interfaceDialogo" class="interface-dialogo">
 
-        <!-- IMAGEM ÚNICA DO PERSONAGEM -->
         <img src=""
              alt=""
              id="imagemPersonagem"
@@ -78,10 +78,10 @@
         <div class="caixa-dialogo">
             <div class="nome-personagem">Personagem</div>
             <div class="texto-dialogo"></div>
+
             <div class="indicador-dialogo">
                 Clique ou pressione ENTER para continuar ▼
             </div>
-
         </div>
     </div>
 
@@ -90,16 +90,14 @@
 
         <div class="cadernocadeado-grande-wrapper">
 
-            <!-- IMAGEM DO CADERNO -->
             <img src="../assets/imagens/cadernocadeadoampliado.png"
                  class="cadernocadeado-grande"
                  alt="Caderno cadeado ampliado">
 
-            <!-- CADEADO DE COMBINAÇÃO -->
             <div class="cadeado-container">
+
                 <div class="roldanas">
 
-                    <!-- PRIMEIRA ROLDANA -->
                     <div class="roldana">
                         <button type="button"
                             onclick="girarRoldana(0, -1)"
@@ -108,6 +106,7 @@
                         </button>
 
                         <div class="numero-roldana" id="roldana0">0</div>
+
                         <button type="button"
                             onclick="girarRoldana(0, 1)"
                             aria-label="Aumentar primeiro número">
@@ -115,9 +114,7 @@
                         </button>
                     </div>
 
-                    <!-- SEGUNDA ROLDANA -->
                     <div class="roldana">
-
                         <button type="button"
                             onclick="girarRoldana(1, -1)"
                             aria-label="Diminuir segundo número">
@@ -125,6 +122,7 @@
                         </button>
 
                         <div class="numero-roldana" id="roldana1">0</div>
+
                         <button type="button"
                             onclick="girarRoldana(1, 1)"
                             aria-label="Aumentar segundo número">
@@ -132,9 +130,7 @@
                         </button>
                     </div>
 
-                    <!-- TERCEIRA ROLDANA -->
                     <div class="roldana">
-
                         <button type="button"
                             onclick="girarRoldana(2, -1)"
                             aria-label="Diminuir terceiro número">
@@ -142,26 +138,26 @@
                         </button>
 
                         <div class="numero-roldana" id="roldana2">0</div>
+
                         <button type="button"
                             onclick="girarRoldana(2, 1)"
                             aria-label="Aumentar terceiro número">
                             ▼
                         </button>
                     </div>
+
                 </div>
 
-                <!-- BOTÃO VERIFICAR -->
                 <button type="button"
                     class="botao-verificar"
                     onclick="verificarCombinacao()">
                     VERIFICAR
                 </button>
 
-                <!-- MENSAGEM -->
                 <p id="mensagemCadeado"></p>
+
             </div>
 
-            <!-- FECHAR CADERNO CADEADO -->
             <button type="button"
                 class="botao-fechar"
                 onclick="fecharCadernoCadeado()"
@@ -172,21 +168,42 @@
         </div>
     </div>
 
-    <!-- CADERNO RATO AMPLIADO -->
-    <div class="cadernorato-overlay" id="cadernoratoOverlay">
+    <!-- CARROSSEL DAS PÁGINAS DO CADERNO -->
+    <div class="paginas-overlay" id="paginasOverlay">
 
-        <img src="../assets/imagens/cadernoampliado.png"
-             class="cadernorato-grande"
-             alt="Caderno rato ampliado"
-             onclick="AbrirCadernoRato2">
+        <div class="carrossel">
 
-        <!-- FECHAR CADERNO RATO -->
+            <button type="button"
+                class="carrossel-btn anterior"
+                onclick="mudarPagina(-1)"
+                aria-label="Página anterior">
+                &#10094;
+            </button>
+
+            <img src="../assets/imagens/cadernoampliado.png"
+                 id="imagemPagina"
+                 alt="Página do caderno">
+
+            <button type="button"
+                class="carrossel-btn proximo"
+                onclick="mudarPagina(1)"
+                aria-label="Próxima página">
+                &#10095;
+            </button>
+
+            <div class="contador-paginas" id="contadorPaginas">
+                1 / 5
+            </div>
+
+        </div>
+
         <button type="button"
             class="rato-fechar"
-            onclick="fecharCadernoRato()"
-            aria-label="Fechar caderno">
+            onclick="fecharPaginas()"
+            aria-label="Fechar páginas">
             ×
         </button>
+
     </div>
 
     <!-- NOVO CADERNO DESBLOQUEADO -->
@@ -194,37 +211,43 @@
 
         <div class="caderno-desbloqueado-wrapper">
 
-            <!-- IMAGEM DO NOVO CADERNO -->
-            <img src="../assets/imagens/caderno_aberto.png" 
+            <img src="../assets/imagens/caderno_aberto.png"
                  class="caderno-desbloqueado-grande"
-                 alt="Novo caderno desbloqueado" >
+                 alt="Novo caderno desbloqueado">
 
-            <img src="../assets/imagens/cartafechada.png" class="carta-fechada" alt="" onclick="abrirCarta()">
+            <img src="../assets/imagens/cartafechada.png"
+                 class="carta-fechada"
+                 alt="Carta fechada"
+                 onclick="abrirCarta()">
 
-            <!-- FECHAR NOVO CADERNO -->
             <button type="button"
                 class="botao-fechar"
                 onclick="fecharCadernoDesbloqueado()"
                 aria-label="Fechar novo caderno">
                 ×
             </button>
+
         </div>
     </div>
 
-     <div class="overlay" id="cartaabertaOverlay">
+    <!-- CARTA ABERTA -->
+    <div class="overlay" id="cartaabertaOverlay">
 
         <div class="carta-aberta-wrapper">
-            <img src="../assets/imagens/cartaaberta.png" class="carta-aberta">
 
-             <!-- FECHAR NOVO CADERNO -->
+            <img src="../assets/imagens/cartaaberta.png"
+                 class="carta-aberta"
+                 alt="Carta aberta">
+
             <button type="button"
                 class="botao-fechar"
                 onclick="fecharCartaAberta()"
-                aria-label="Fechar carta aberta">
+                aria-label="Fechar carta">
                 ×
             </button>
+
         </div>
-     </div>
+    </div>
 
     <!-- JAVASCRIPT -->
     <script src="../js/sistemas/musica.js"></script>

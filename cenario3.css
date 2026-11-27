@@ -1,4 +1,3 @@
-
 * {
     box-sizing: border-box;
 }
@@ -25,59 +24,47 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* ========================================
-   CENÁRIO
-======================================== */
-
+/* CENÁRIO */
 #cenario {
     position: absolute;
-
-    /* PROPORÇÃO FIXA DO CENÁRIO: 16:9 */
     aspect-ratio: 16 / 9;
-
-    /* OCUPA TODA A TELA, SEM FAIXAS PRETAS */
     width: max(100vw, 177.7778vh);
     height: max(100vh, 56.25vw);
-
-    /* CENTRALIZA O CENÁRIO */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
     background-image: url('../assets/imagens/fundo_3.png');
-
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-
     overflow: hidden;
 }
 
-
-/* ========================================
-   CADERNO RATO
-======================================== */
-
-.caderno-rato {
+.amarelo {
     position: absolute;
-
-    /* TAMANHO PROPORCIONAL AO CENÁRIO */
-    width: 10.4167%;
-
-    /* POSIÇÃO FIXA DENTRO DO CENÁRIO */
-    left: 78%;
-    top: 56%;
-
-    transform: translate(-50%, -50%);
-
+    width: 15.8%;
+    left: 10%;
+    top: 33%;
     padding: 0;
     margin: 0;
     border: none;
     background: transparent;
+    transition: transform 0.2s ease;
+}
 
+/* CADERNO RATO */
+.caderno-rato {
+    position: absolute;
+    width: 4.2%;
+    left: 77.6%;
+    top: 56.41%;
+    transform: translate(-50%, -50%);
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
     cursor: pointer;
     z-index: 10;
-
     transition: transform 0.2s ease;
 }
 
@@ -91,58 +78,45 @@ body {
     display: block;
 }
 
-
-/* ========================================
-   CADERNO CADEADO
-======================================== */
-
+/* CADERNO CADEADO */
 .caderno-cadeado {
     position: absolute;
-
-    /* TAMANHO PROPORCIONAL AO CENÁRIO */
-    width: 13.0208%;
-
-    /* POSIÇÃO FIXA DENTRO DO CENÁRIO */
-    left: 20%;
-    top: 17%;
-
+    width: 14%;
+    left: 17.8%;
+    top: 16.9%;
     transform: translate(-50%, -50%);
-
     padding: 0;
     margin: 0;
     border: none;
     background: transparent;
-
     cursor: pointer;
     z-index: 10;
-
     transition: transform 0.2s ease;
 }
 
 .caderno-cadeado:hover {
-    transform: translate(-50%, -50%) scale(1.3);
+    transform: translate(-50%, -50%) scale(1.15);
+}
+
+.caderno-cadeado:active {
+    transform: translate(-50%, -50%) scale(0.96);
 }
 
 .caderno-cadeado img {
+    display: block;
     width: 100%;
     height: auto;
-    display: block;
+
+    pointer-events: none;
 }
 
-
-/* ========================================
-   AMPLIAÇÃO DOS CADERNOS
-======================================== */
-
+/* AMPLIAÇÃO DOS CADERNOS */
 .overlay,
 .cadernorato-overlay {
     position: fixed;
     inset: 0;
-
     background: rgba(0, 0, 0, 0.85);
-
     display: none;
-
     align-items: center;
     justify-content: center;
     z-index: 400;
@@ -170,17 +144,15 @@ body {
 .cadernorato-grande {
     width: min(900px, 85vw);
     max-height: 85vh;
-
     object-fit: contain;
     display: block;
+    cursor: pointer;
 }
 
-/* ========================================
-   NOVO CADERNO DESBLOQUEADO
-======================================== */
+/* NOVO CADERNO DESBLOQUEADO */
 .caderno-desbloqueado-wrapper {
     position: relative;
-    width: min(500px, 80vw);
+    width: min(900px, 80vw);
     max-height: 80vh;
     display: flex;
     align-items: center;
@@ -189,20 +161,25 @@ body {
 
 .caderno-desbloqueado-grande {
     display: block;
-    width: 50%;
-    max-height: 80vh;
-    object-fit: contain;
-}
-.cartafechada {
-    display: block;
-    width: 50%;
+    width: 100%;
     max-height: 80vh;
     object-fit: contain;
 }
 
-/* ========================================
-   CARTA ABERTA
-======================================== */
+/* CARTA FECHADA SOBRE O CADERNO */
+.carta-fechada {
+    position: absolute;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    top: 50%;
+    left: 59%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    cursor: pointer;
+}
+
+/* CARTA ABERTA */
 .carta-aberta-wrapper {
     position: relative;
     width: min(900px, 85vw);
@@ -218,109 +195,169 @@ body {
     max-height: 85vh;
     object-fit: contain;
 }
-/* ========================================
-   BOTÃO FECHAR CADERNO CADEADO
-======================================== */
+
+/* BOTÃO FECHAR CADERNO CADEADO */
 .botao-fechar {
     position: fixed;
-
     top: 10px;
     right: 10px;
-
     width: 42px;
     height: 42px;
-
     border: none;
     border-radius: 50%;
-
     background: rgba(20, 20, 20, 0.9);
-
     color: white;
     font-size: 30px;
-
     cursor: pointer;
-
     z-index: 200;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     line-height: 1;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
 }
 
 .botao-fechar:hover {
     background: #be123c;
+    transform: scale(1.08);
 }
 
+.botao-fechar:active {
+    transform: scale(0.92);
+}
 
-/* ========================================
-   BOTÃO FECHAR CADERNO DOS RATOS
-======================================== */
-
+/* BOTÃO FECHAR CADERNO DOS RATOS */
 .rato-fechar {
     position: fixed;
-
     top: 20px;
     right: 25px;
-
     width: 42px;
     height: 42px;
-
     border: none;
     border-radius: 50%;
-
     background: rgba(20, 20, 20, 0.9);
-
     color: #c5a8ed;
     font-size: 30px;
-
     cursor: pointer;
-
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 510;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
 }
 
 .rato-fechar:hover {
     background: #be123c;
+    transform: scale(1.08);
 }
 
+.rato-fechar:active {
+    transform: scale(0.92);
+}
 
-/* ========================================
-   CADEADO
-======================================== */
+/* CARROSSEL DAS PÁGINAS DO CADERNO */
+.paginas-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 500;
+}
 
+/* ÁREA DO CARROSSEL */
+.carrossel {
+    position: relative;
+    width: min(900px, 85vw);
+    height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* IMAGEM DA PÁGINA */
+.carrossel img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+/* BOTÕES DE NAVEGAÇÃO */
+.carrossel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(20, 20, 20, 0.85);
+    color: #c5a8ed;
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 2;
+    transition: 0.2s;
+}
+
+.carrossel-btn:hover {
+    background: rgba(100, 75, 130, 0.95);
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* BOTÃO ANTERIOR */
+.carrossel-btn.anterior {
+    left: 15px;
+}
+
+/* BOTÃO PRÓXIMO */
+.carrossel-btn.proximo {
+    right: 15px;
+}
+
+/* CONTADOR DE PÁGINAS */
+.contador-paginas {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 15px;
+    background: rgba(20, 20, 20, 0.85);
+    border-radius: 20px;
+    color: white;
+    font-size: 14px;
+    z-index: 2;
+}
+
+/* CADEADO */
 .cadeado-container {
     position: fixed;
-
     top: 50%;
     left: 50%;
-
     transform: translate(-50%, -50%);
-
     width: min(420px, 85%);
-
     padding: 25px;
-
     background: rgba(15, 15, 15, 0.94);
-
     border: 2px solid rgba(180, 150, 220, 0.55);
     border-radius: 12px;
-
     text-align: center;
-
     color: #c5a8ed;
-
     z-index: 150;
 }
 
 .cadeado-container h2 {
     margin: 0 0 10px;
-
     font-size: 20px;
     color: #c5a8ed;
-
     letter-spacing: 2px;
 }
 
@@ -329,54 +366,36 @@ body {
     color: #c5a8ed;
 }
 
-
-/* ========================================
-   CONJUNTO DAS ROLDANAS
-======================================== */
-
+/* CONJUNTO DAS ROLDANAS */
 .roldanas {
     display: flex;
-
     justify-content: center;
     align-items: center;
-
     gap: 15px;
-
     margin: 25px 0;
 }
 
 .roldana {
     display: flex;
-
     flex-direction: column;
     align-items: center;
-
     width: 75px;
     padding: 8px;
-
     background: #292929;
-
     border: 2px solid rgba(180, 150, 220, 0.55);
     border-radius: 10px;
-
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
 }
 
 .roldana button {
     width: 100%;
     height: 35px;
-
     border: none;
-
     background: transparent;
-
     color: #c5a8ed;
-
     font-size: 23px;
     font-weight: bold;
-
     cursor: pointer;
-
     transition: 0.2s;
 }
 
@@ -387,31 +406,21 @@ body {
 
 .numero-roldana {
     display: flex;
-
     justify-content: center;
     align-items: center;
-
     width: 100%;
     height: 65px;
-
     background: rgba(15, 15, 20, 0.92);
-
     border: 1px solid rgba(180, 150, 220, 0.55);
     border-radius: 5px;
-
     color: #c5a8ed;
-
     font-family: 'Courier New', monospace;
     font-size: 38px;
     font-weight: bold;
-
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-
-/* ========================================
-   BOTÃO VERIFICAR
-======================================== */
+/* BOTÃO VERIFICAR */
 .botao-verificar {
     width: 100%;
     padding: 13px;
@@ -446,6 +455,7 @@ body {
 #mensagemCadeado.erro {
     color: #ed7777;
 }
+
 .cadeado-container.destravado {
     border-color: #75d68a;
 }
@@ -472,7 +482,6 @@ body {
     pointer-events: none;
     z-index: 2;
 }
-
 
 /* CAIXA DE DIÁLOGO */
 .caixa-dialogo {
@@ -505,9 +514,7 @@ body {
     font-weight: bold;
 }
 
-
 /* TEXTO DA FALA */
-
 .texto-dialogo {
     font-size: 19px;
     line-height: 1.6;
@@ -515,9 +522,7 @@ body {
     max-width: 75%;
 }
 
-
 /* INDICADOR PARA CONTINUAR */
-
 .indicador-dialogo {
     position: absolute;
     right: 25px;
@@ -536,10 +541,7 @@ body {
     }
 }
 
-/* ========================================
-   OBJETIVOS DO JOGO
-======================================== */
-
+/* OBJETIVOS DO JOGO */
 .objetivos-container {
     position: fixed;
     top: 25px;
@@ -569,57 +571,38 @@ body {
         visibility 0.3s;
 }
 
-
 /* OBJETIVO VISÍVEL */
-
 .objetivo-jogo.visivel {
     opacity: 1;
     visibility: visible;
     transform: translateX(0);
 }
 
-
 /* CABEÇALHO */
-
 .objetivo-cabecalho {
     display: flex;
-
     justify-content: space-between;
     align-items: center;
-
     margin-bottom: 12px;
-
     color: #c5a8ed;
-
     font-size: 13px;
     font-weight: bold;
-
     letter-spacing: 2px;
 }
 
-
 /* BOTÃO MINIMIZAR */
-
 .objetivo-cabecalho button {
     width: 25px;
     height: 25px;
-
     border: none;
     border-radius: 4px;
-
     background: rgba(255, 255, 255, 0.1);
-
     color: white;
-
     font-size: 20px;
-
     cursor: pointer;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     transition: background 0.2s;
 }
 
@@ -627,182 +610,140 @@ body {
     background: rgba(155, 122, 203, 0.5);
 }
 
-
 /* TEXTO DO OBJETIVO */
-
 .objetivo-jogo p {
     margin: 0;
-
     font-size: 14px;
     line-height: 1.5;
-
     color: #e5e5e5;
 }
 
-
 /* OBJETIVO MINIMIZADO */
-
 .objetivo-jogo.minimizado {
     display: none;
 }
 
-
 /* ABA PARA REABRIR */
-
 .objetivo-aba {
     display: none;
-
     width: 125px;
-
     padding: 12px 15px;
-
     background: rgba(15, 15, 20, 0.92);
-
     border: 1px solid rgba(180, 150, 220, 0.55);
     border-left: 4px solid #9b7acb;
-
     border-radius: 5px;
-
     color: #c5a8ed;
-
     font-size: 12px;
     font-weight: bold;
-
     letter-spacing: 1px;
-
     text-align: center;
-
     cursor: pointer;
-
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-
     transition:
         background 0.2s ease,
         transform 0.2s ease;
 }
 
-
 /* MOSTRAR ABA */
-
 .objetivo-aba.visivel {
     display: block;
 }
 
-
 /* EFEITO AO PASSAR O MOUSE */
-
 .objetivo-aba:hover {
     background: rgba(75, 55, 100, 0.95);
-
     transform: translateX(4px);
 }
 
-
-/* ========================================
-   OPÇÕES DE DIÁLOGO
-======================================== */
-
+/* OPÇÕES DE DIÁLOGO */
 .opcoes-dialogo {
-
     display: none;
-
     flex-direction: column;
-
     gap: 12px;
-
     width: 75%;
-
     margin-top: 20px;
-
 }
 
 .opcoes-dialogo button {
-
     width: 100%;
-
     padding: 12px 15px;
-
     background: rgba(45, 40, 60, 0.95);
-
     border: 1px solid rgba(180, 150, 220, 0.55);
-
     border-radius: 6px;
-
     color: white;
-
     font-size: 15px;
-
     text-align: left;
-
     cursor: pointer;
-
     transition: 0.2s;
-
 }
 
 .opcoes-dialogo button:hover {
-
     background: rgba(100, 75, 130, 0.95);
-
     transform: translateX(5px);
-
 }
 
-
-/* ========================================
-   APRESENTAÇÃO DE IMAGENS
-======================================== */
-
+/* IMAGEM DE DESTAQUE DOS DIÁLOGOS */
 .apresentacao-imagem {
-
     position: fixed;
-
     inset: 0;
-
     display: none;
-
     align-items: center;
-
     justify-content: center;
-
-    background: rgba(0, 0, 0, 0.95);
-
-    z-index: 500;
-
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 1000;
 }
 
-.apresentacao-imagem img {
-
+/* IMAGEM AMPLIADA */
+#imagemDestaque {
+    display: block;
     max-width: 85vw;
-
     max-height: 85vh;
-
+    width: auto;
+    height: auto;
     object-fit: contain;
-
+    border-radius: 5px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+    animation: aparecerImagemDestaque 0.3s ease;
 }
 
-.apresentacao-imagem button {
+/* ANIMAÇÃO DE ENTRADA */
+@keyframes aparecerImagemDestaque {
+    from {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
 
+/* BOTÃO FECHAR IMAGEM */
+#fecharImagemDestaque {
     position: absolute;
-
     top: 20px;
-
     right: 25px;
-
-    width: 42px;
-
-    height: 42px;
-
+    width: 45px;
+    height: 45px;
     border: none;
-
     border-radius: 50%;
-
     background: rgba(20, 20, 20, 0.9);
-
     color: white;
-
-    font-size: 30px;
-
+    font-size: 32px;
     cursor: pointer;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+#fecharImagemDestaque:hover {
+    background: #be123c;
+    transform: scale(1.1);
+}
+#fecharImagemDestaque:active {
+    transform: scale(0.9);
 }
