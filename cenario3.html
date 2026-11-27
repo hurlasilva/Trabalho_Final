@@ -169,43 +169,53 @@
     </div>
 
     <!-- CARROSSEL DAS PÁGINAS DO CADERNO -->
-    <div class="paginas-overlay" id="paginasOverlay">
+<div class="paginas-overlay" id="paginasOverlay">
 
-        <div class="carrossel">
+    <div class="carrossel">
 
-            <button type="button"
-                class="carrossel-btn anterior"
-                onclick="mudarPagina(-1)"
-                aria-label="Página anterior">
-                &#10094;
-            </button>
+        <!-- BOTÃO PÁGINA ANTERIOR -->
+        <button type="button"
+            class="carrossel-btn anterior"
+            id="botaoAnterior"
+            onclick="mudarPagina(-1)"
+            aria-label="Página anterior">
+            &#10094;
+        </button>
+
+        <!-- ÁREA FIXA DAS IMAGENS -->
+        <div class="pagina-container">
 
             <img src="../assets/imagens/cadernoampliado.png"
                  id="imagemPagina"
                  alt="Página do caderno">
 
-            <button type="button"
-                class="carrossel-btn proximo"
-                onclick="mudarPagina(1)"
-                aria-label="Próxima página">
-                &#10095;
-            </button>
-
-            <div class="contador-paginas" id="contadorPaginas">
-                1 / 5
-            </div>
-
         </div>
 
+        <!-- BOTÃO PRÓXIMA PÁGINA -->
         <button type="button"
-            class="rato-fechar"
-            onclick="fecharPaginas()"
-            aria-label="Fechar páginas">
-            ×
+            class="carrossel-btn proximo"
+            id="botaoProximo"
+            onclick="mudarPagina(1)"
+            aria-label="Próxima página">
+            &#10095;
         </button>
+
+        <!-- CONTADOR -->
+        <div class="contador-paginas" id="contadorPaginas">
+            1 / 5
+        </div>
 
     </div>
 
+    <!-- BOTÃO FECHAR -->
+    <button type="button"
+        class="rato-fechar"
+        onclick="fecharPaginas()"
+        aria-label="Fechar páginas">
+        ×
+    </button>
+
+</div>
     <!-- NOVO CADERNO DESBLOQUEADO -->
     <div class="overlay" id="cadernoDesbloqueadoOverlay">
 

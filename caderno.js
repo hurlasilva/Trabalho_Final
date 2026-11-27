@@ -229,7 +229,6 @@ const paginasRato = [
     "../assets/imagens/pag2.png",
     "../assets/imagens/pag3.png",
     "../assets/imagens/pag4.png"
-
 ];
 
 
