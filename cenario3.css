@@ -79,16 +79,14 @@ body {
     display: block;
 }
 
-
-
 /* CADERNO CADEADO */
 .caderno-cadeado {
     position: absolute;
-    width: 5%;
+    width: 14.5%;
     max-width: 100%;
     height: auto;
-    left: 17.8%;
-    top: 16.9%;
+    left: 17.9%;
+    top: 17.5%;
     transform: translate(-50%, -50%);
     padding: 0;
     margin: 0;
@@ -249,10 +247,10 @@ body {
     transform: scale(0.92);
 }
 
-
 /* =========================================
    CARROSSEL DAS PÁGINAS DO CADERNO
 ========================================= */
+
 .paginas-overlay {
     position: fixed;
     inset: 0;
@@ -267,34 +265,26 @@ body {
 /* ÁREA FIXA DO CARROSSEL */
 .carrossel {
     position: relative;
-
     width: min(850px, 80vw);
     height: 75vh;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     overflow: hidden;
 }
 
 /* IMAGENS DAS PÁGINAS */
 .carrossel img {
     position: absolute;
-
     width: 100%;
     height: 100%;
-
     max-width: 100%;
     max-height: 100%;
-
     object-fit: contain;
     object-position: center center;
-
     display: block;
     margin: 0;
     padding: 0;
-
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -347,9 +337,8 @@ body {
     z-index: 2;
 }
 
-/* RESPONSIVIDADE */
+/* RESPONSIVIDADE DO CARROSSEL */
 @media (max-width: 600px) {
-
     .carrossel {
         width: 90vw;
         height: 85vh;
@@ -364,7 +353,6 @@ body {
         height: 38px;
         font-size: 19px;
     }
-
 }
 
 /* CADEADO */
@@ -736,6 +724,15 @@ body {
     animation: aparecerImagemDestaque 0.3s ease;
 }
 
+/* SOMENTE A CARTA DA LÍDIA FICA MENOR */
+#imagemDestaque.carta-lidia-destaque {
+    max-width: 45vw;
+    max-height: 65vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
 /* ANIMAÇÃO DE ENTRADA */
 @keyframes aparecerImagemDestaque {
     from {
@@ -777,4 +774,259 @@ body {
 
 #fecharImagemDestaque:active {
     transform: scale(0.9);
+}
+
+/* =====================================
+   TELA DE ITEM ADICIONADO
+===================================== */
+
+.notificacao-item-inventario {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+/* FUNDO ESCURECIDO */
+.fundo-notificacao-item {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.90);
+}
+
+/* PAINEL */
+.conteudo-notificacao-item {
+    position: relative;
+    width: 450px;
+    max-width: 90%;
+    padding: 30px;
+    background: linear-gradient(145deg, #333333, #171717);
+    border: 1px solid #b69b63;
+    border-radius: 12px;
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.8);
+    text-align: center;
+    color: white;
+    animation: aparecerNotificacao 0.4s ease;
+}
+
+/* TÍTULO */
+.titulo-notificacao-item {
+    color: #d8bd80;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-top: 0;
+}
+
+/* IMAGEM MAIOR NA NOTIFICAÇÃO */
+.imagem-notificacao-item {
+    width: 250px;
+    height: 250px;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(214, 190, 140, 0.4);
+    border-radius: 10px;
+}
+
+.imagem-notificacao-item img {
+    width: 95%;
+    height: 95%;
+    max-width: 95%;
+    max-height: 95%;
+    object-fit: contain;
+}
+
+/* NOME */
+.conteudo-notificacao-item h2 {
+    font-size: 22px;
+    margin: 10px 0;
+}
+
+/* DESCRIÇÃO */
+.conteudo-notificacao-item > p:not(.titulo-notificacao-item) {
+    color: #bbb;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* BOTÃO */
+.conteudo-notificacao-item button {
+    margin-top: 20px;
+    padding: 11px 30px;
+    background: #8b754c;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.conteudo-notificacao-item button:hover {
+    background: #aa9060;
+}
+
+/* =====================================
+   VISUALIZAÇÃO DOS OBJETOS
+===================================== */
+
+.visualizacao-item-inventario {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    z-index: 2001;
+}
+
+/* FUNDO */
+.fundo-visualizacao-item {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+}
+
+/* PAINEL */
+.conteudo-visualizacao-item {
+    position: relative;
+    width: 480px;
+    max-width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 30px;
+    background: linear-gradient(145deg, #333333, #171717);
+    border: 1px solid #b69b63;
+    border-radius: 12px;
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.8);
+    text-align: center;
+    color: white;
+    animation: aparecerNotificacao 0.4s ease;
+}
+
+/* TÍTULO */
+.titulo-visualizacao-item {
+    color: #d8bd80;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+/* IMAGEM AMPLIADA */
+.imagem-visualizacao-item {
+    width: 100%;
+    min-height: 250px;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(214, 190, 140, 0.3);
+    border-radius: 10px;
+}
+
+.imagem-visualizacao-item img {
+    display: block;
+    max-width: 90%;
+    max-height: 50vh;
+    object-fit: contain;
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.2));
+}
+
+/* NOME */
+.conteudo-visualizacao-item h2 {
+    margin: 15px 0;
+    color: #e6d5b2;
+    font-size: 23px;
+}
+
+/* DESCRIÇÃO */
+.conteudo-visualizacao-item > p:not(.titulo-visualizacao-item) {
+    color: #bbb;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* BOTÃO X DE FECHAR */
+.fechar-visualizacao-item {
+    position: absolute;
+    top: 10px;
+    right: 13px;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.fechar-visualizacao-item:hover {
+    color: #d8bd80;
+}
+
+/* BOTÃO RETIRAR DO INVENTÁRIO */
+.botao-fechar-objeto {
+    margin-top: 20px;
+    padding: 11px 35px;
+    background: #8b754c;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.botao-fechar-objeto:hover {
+    background: #aa9060;
+}
+
+/* =====================================
+   ANIMAÇÕES
+===================================== */
+
+@keyframes aparecerNotificacao {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* =====================================
+   RESPONSIVIDADE
+===================================== */
+
+@media (max-width: 600px) {
+    .conteudo-notificacao-item,
+    .conteudo-visualizacao-item {
+        padding: 22px;
+    }
+
+    .imagem-notificacao-item {
+        width: 200px;
+        height: 200px;
+    }
+
+    .conteudo-notificacao-item h2,
+    .conteudo-visualizacao-item h2 {
+        font-size: 19px;
+    }
+
+    #imagemDestaque.carta-lidia-destaque {
+        max-width: 75vw;
+        max-height: 65vh;
+    }
 }

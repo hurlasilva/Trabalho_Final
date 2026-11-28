@@ -152,7 +152,7 @@
         </div>
     </div>
 
-   <!-- CARROSSEL DAS PÁGINAS DO CADERNO -->
+    <!-- CARROSSEL DAS PÁGINAS DO CADERNO -->
     <div class="paginas-overlay" id="paginasOverlay">
 
         <div class="carrossel">
@@ -255,6 +255,88 @@
 
     </div>
 
+    <!-- =====================================
+         TELA DE ITEM ADICIONADO AO INVENTÁRIO
+    ===================================== -->
+
+    <div id="notificacaoItemInventario" class="notificacao-item-inventario">
+
+        <div class="fundo-notificacao-item"></div>
+
+        <div class="conteudo-notificacao-item">
+
+            <p class="titulo-notificacao-item">
+                ITEM ADICIONADO AO INVENTÁRIO
+            </p>
+
+            <div class="imagem-notificacao-item">
+                <img id="imagemNotificacaoItem" src="" alt="">
+            </div>
+
+            <h2 id="nomeNotificacaoItem"></h2>
+
+            <p id="descricaoNotificacaoItem"></p>
+
+            <button type="button" onclick="fecharNotificacaoItem()">
+                CONTINUAR
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- =====================================
+         VISUALIZAÇÃO DE OBJETOS DO INVENTÁRIO
+    ===================================== -->
+
+    <div id="visualizacaoItemInventario" class="visualizacao-item-inventario">
+
+        <div
+            class="fundo-visualizacao-item"
+            onclick="fecharVisualizacaoItem()">
+        </div>
+
+        <div class="conteudo-visualizacao-item">
+
+            <!-- BOTÃO PARA FECHAR A VISUALIZAÇÃO -->
+            <button
+                type="button"
+                class="fechar-visualizacao-item"
+                onclick="fecharVisualizacaoItem()"
+                aria-label="Fechar objeto">
+
+                ×
+
+            </button>
+
+            <p class="titulo-visualizacao-item">
+                OBJETO ENCONTRADO
+            </p>
+
+            <div class="imagem-visualizacao-item">
+
+                <img id="imagemObjetoInventario" src="" alt="">
+
+            </div>
+
+            <h2 id="nomeObjetoInventario"></h2>
+
+            <p id="descricaoObjetoInventario"></p>
+
+            <!-- BOTÃO PARA RETIRAR O ITEM DO INVENTÁRIO -->
+            <button
+                type="button"
+                class="botao-fechar-objeto"
+                onclick="removerItemVisualizado()">
+
+                RETIRAR DO INVENTÁRIO
+
+            </button>
+
+        </div>
+
+    </div>
+
     <!-- JAVASCRIPT -->
     <script src="../js/sistemas/musica.js"></script>
     <script src="../js/sistemas/configuracoes.js"></script>
@@ -262,7 +344,7 @@
     <!-- INVENTÁRIO ORIGINAL DO PROJETO -->
     <script src="../js/sistemas/inventario.js"></script>
 
-    <script src="../js/cenario3/dialogo.js"></script>
+    <script src="../js/cenario3/dialogo3.js"></script>
     <script src="../js/historia/objetivos.js"></script>
     <script src="../js/cenario3/caderno.js"></script>
 

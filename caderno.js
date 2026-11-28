@@ -26,6 +26,50 @@ let dialogoFinalIniciado = false;
 
 
 /* ========================================
+   VERIFICAR ITENS NO INVENTÁRIO
+======================================== */
+
+function verificarItemInventario(id) {
+
+    const itens = obterItensSalvosInventario();
+
+    return itens.some(item => item.id === id);
+
+}
+
+
+/* ========================================
+   ESCONDER OBJETOS JÁ COLETADOS
+======================================== */
+
+function atualizarObjetosColetados() {
+
+    // CADERNO DOS RATOS
+    if (verificarItemInventario("anotacoes_caderno_rato")) {
+
+        const cadernoRato = document.querySelector(".caderno-rato");
+
+        if (cadernoRato) {
+            cadernoRato.style.display = "none";
+        }
+
+    }
+
+    // CARTA DE IARA
+    if (verificarItemInventario("carta_iara")) {
+
+        const cartaFechada = document.querySelector(".carta-fechada");
+
+        if (cartaFechada) {
+            cartaFechada.style.display = "none";
+        }
+
+    }
+
+}
+
+
+/* ========================================
    REGISTRAR PISTA CONCLUÍDA
 ======================================== */
 
@@ -39,35 +83,7 @@ function registrarPistaConcluida(nomePista) {
 
     console.log("Pistas encontradas: " + contadorPistas);
 
-
-    // ADICIONAR ANOTAÇÕES DO CADERNO DOS RATOS NO INVENTÁRIO
-    if (nomePista === "cadernoRato") {
-
-        adicionarItemInventario({
-            id: "anotacoes_caderno_rato",
-            nome: "Anotações do caderno",
-            imagem: "../assets/imagens/cadernoampliado.png",
-            descricao: "Anotações encontradas no caderno dos ratos. Essas informações podem ajudar Amélia durante sua investigação."
-        });
-
-    }
-
-    // ADICIONAR CARTA DE IARA
-    if (nomePista === "carta") {
-
-        adicionarItemInventario({
-            id: "carta_iara",
-            nome: "Carta de Iara",
-            imagem: "../assets/imagens/cartaaberta.png",
-            descricao: "Carta deixada por Iara e destinada a Dinalva. O documento pode conter pistas."
-        });
-
-    }
-
-     
-
-
-    // VERIFICAR SE TODAS AS PISTAS FORAM CONCLUÍDAS
+    // VERIFICAR SE TODAS AS PISTAS FORAM ENCONTRADAS
     if (
         contadorPistas === totalPistas &&
         !dialogoFinalIniciado
@@ -242,24 +258,64 @@ const paginasRato = [
 
 ];
 
-
 let paginaAtual = 0;
 
 
-/* ABRIR CARROSSEL DAS PÁGINAS */
+/* ========================================
+   ABRIR CADERNO DOS RATOS
+======================================== */
 
 function abrirCadernoRato() {
 
-    paginaAtual = 0;
+    // NÃO PERMITIR COLETAR DUAS VEZES
+    if (verificarItemInventario("anotacoes_caderno_rato")) {
 
-    document.getElementById("paginasOverlay").style.display = "flex";
+        atualizarObjetosColetados();
 
-    atualizarPagina();
+        return;
+
+    }
+
+    // REGISTRAR A PISTA
+    registrarPistaConcluida("cadernoRato");
+
+    // ESCONDER O CADERNO DO CENÁRIO
+    const cadernoRato = document.querySelector(".caderno-rato");
+
+    if (cadernoRato) {
+        cadernoRato.style.display = "none";
+    }
+
+    // DEFINIR A AÇÃO ANTES DE MOSTRAR A NOTIFICAÇÃO
+    acaoAposNotificacao = function() {
+
+        paginaAtual = 0;
+
+        document.getElementById("paginasOverlay").style.display = "flex";
+
+        atualizarPagina();
+
+    };
+
+    // ADICIONAR ITEM E MOSTRAR NOTIFICAÇÃO
+    adicionarItemComNotificacao({
+
+        id: "anotacoes_caderno_rato",
+
+        nome: "Anotações do caderno",
+
+        imagem: "../assets/imagens/cadernoampliado.png",
+
+        descricao: "Anotações encontradas no caderno dos ratos. Essas informações podem ajudar Amélia durante sua investigação."
+
+    });
 
 }
 
 
-/* ATUALIZAR IMAGEM E CONTADOR */
+/* ========================================
+   ATUALIZAR IMAGEM E CONTADOR
+======================================== */
 
 function atualizarPagina() {
 
@@ -271,7 +327,9 @@ function atualizarPagina() {
 }
 
 
-/* AVANÇAR OU VOLTAR PÁGINAS */
+/* ========================================
+   AVANÇAR OU VOLTAR PÁGINAS
+======================================== */
 
 function mudarPagina(direcao) {
 
@@ -298,15 +356,7 @@ function fecharPaginas() {
 
     const overlay = document.getElementById("paginasOverlay");
 
-    const estavaAberto = overlay.style.display === "flex";
-
     overlay.style.display = "none";
-
-    if (estavaAberto) {
-
-        registrarPistaConcluida("cadernoRato");
-
-    }
 
 }
 
@@ -341,40 +391,58 @@ function abrirCadernoDesbloqueado() {
 
 function fecharCadernoDesbloqueado() {
 
-    const overlay = document.getElementById("cadernoDesbloqueadoOverlay");
-
-    const estavaAberto = overlay.style.display === "flex";
-
-    overlay.style.display = "none";
-
-    if (estavaAberto) {
-
-        registrarPistaConcluida("cadernoDesbloqueado");
-
-    }
+    document.getElementById("cadernoDesbloqueadoOverlay").style.display = "none";
 
 }
 
 
 /* ========================================
-   CARTA
+   CARTA DE IARA
 ======================================== */
 
 function abrirCarta() {
 
-    const caderno = document.getElementById("cadernoDesbloqueadoOverlay");
+    // NÃO PERMITIR COLETAR DUAS VEZES
+    if (verificarItemInventario("carta_iara")) {
 
-    const cadernoEstavaAberto = caderno.style.display === "flex";
+        atualizarObjetosColetados();
 
-    caderno.style.display = "none";
-
-    if (cadernoEstavaAberto) {
-
-        registrarPistaConcluida("cadernoDesbloqueado");
+        return;
 
     }
 
-    document.getElementById("cartaabertaOverlay").style.display = "flex";
+    // REGISTRAR A PISTA
+    registrarPistaConcluida("carta");
+
+    // ESCONDER A CARTA FECHADA
+    const cartaFechada = document.querySelector(".carta-fechada");
+
+    if (cartaFechada) {
+        cartaFechada.style.display = "none";
+    }
+
+    // FECHAR O CADERNO
+    document.getElementById("cadernoDesbloqueadoOverlay").style.display = "none";
+
+    // DEFINIR A AÇÃO ANTES DE MOSTRAR A NOTIFICAÇÃO
+    acaoAposNotificacao = function() {
+
+        document.getElementById("cartaabertaOverlay").style.display = "flex";
+
+    };
+
+    // ADICIONAR ITEM E MOSTRAR NOTIFICAÇÃO
+    adicionarItemComNotificacao({
+
+        id: "carta_iara",
+
+        nome: "Carta de Iara",
+
+        imagem: "../assets/imagens/cartaaberta.png",
+
+        descricao: "Carta deixada por Iara e destinada a Dinalva. O documento pode conter pistas."
+
+    });
 
 }
 
@@ -385,17 +453,7 @@ function abrirCarta() {
 
 function fecharCartaAberta() {
 
-    const overlay = document.getElementById("cartaabertaOverlay");
-
-    const estavaAberta = overlay.style.display === "flex";
-
-    overlay.style.display = "none";
-
-    if (estavaAberta) {
-
-        registrarPistaConcluida("carta");
-
-    }
+    document.getElementById("cartaabertaOverlay").style.display = "none";
 
 }
 
@@ -407,6 +465,16 @@ function fecharCartaAberta() {
 document.addEventListener("keydown", function(event) {
 
     if (event.key === "Escape") {
+
+        // NÃO FECHAR OS OUTROS OVERLAYS
+        // ENQUANTO A NOTIFICAÇÃO ESTIVER ABERTA
+        const notificacao = document.getElementById(
+            "notificacaoItemInventario"
+        );
+
+        if (notificacao && notificacao.style.display === "flex") {
+            return;
+        }
 
         fecharPaginas();
 
@@ -421,3 +489,10 @@ document.addEventListener("keydown", function(event) {
     }
 
 });
+
+
+/* ========================================
+   VERIFICAR OBJETOS AO CARREGAR A PÁGINA
+======================================== */
+
+atualizarObjetosColetados();
