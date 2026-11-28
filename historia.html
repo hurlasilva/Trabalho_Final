@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santa Glória - História</title>
+
+    <link rel="stylesheet" href="../css/historia.css">
+    <link rel="stylesheet" href="../css/inventario.css">
+
+    <script>
+        if (new URLSearchParams(window.location.search).get("fadein") === "1") {
+            document.documentElement.classList.add("fade-in-historia");
+        }
+    </script>
+</head>
+<body>
+
+    <!-- MÚSICA DE FUNDO -->
+    <audio id="musicaFundo" loop style="display: none;">
+        <source src="../assets/audio/audio.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- CENÁRIO -->
+    <div id="cenario">
+
+        <!-- PAINEL NA PORTA -->
+        <button type="button" class="quadro-botao" onclick="abrirPainel()">
+            <img src="../assets/imagens/painel.png" alt="Painel da porta">
+        </button>
+
+        <!-- FLOR NO CHÃO -->
+        <img src="../assets/imagens/flor.png"
+             class="flor-cenario" alt="Flor no cenário">
+
+        <!-- PAPEL PERTO DA PLANTA -->
+        <button type="button" class="papel-botao" onclick="abrirPapel()">
+            <img src="../assets/imagens/papel.png" alt="Anotação">
+        </button>
+
+    </div>
+
+    <!-- OBJETIVOS DO JOGO -->
+    <div class="objetivos-container">
+
+        <!-- OBJETIVO PRINCIPAL -->
+        <div class="objetivo-jogo" id="objetivoJogo">
+
+            <div class="objetivo-cabecalho">
+                <span>OBJETIVO</span>
+
+                <button type="button" id="minimizarObjetivo"
+                        aria-label="Minimizar objetivo">−</button>
+            </div>
+
+            <p>Descubra qual a senha para destrancar a porta.</p>
+
+        </div>
+
+        <!-- ABA PARA REABRIR O OBJETIVO -->
+        <div class="objetivo-aba" id="abaObjetivo">
+            OBJETIVO +
+        </div>
+
+    </div>
+
+    <!-- INTERFACE DE DIÁLOGO -->
+    <div id="interfaceDialogo" class="interface-dialogo">
+
+        <img src="../assets/imagens/personagem.png"
+             alt="Personagem"
+             id="imagemPersonagem"
+             class="imagem-personagem">
+
+        <div class="caixa-dialogo">
+
+            <div class="nome-personagem">Personagem</div>
+
+            <div class="texto-dialogo"></div>
+
+            <div class="indicador-dialogo">
+                Clique ou pressione ENTER para continuar ▼
+            </div>
+
+        </div>
+    </div>
+
+    <!-- PAINEL AMPLIADO -->
+    <div class="overlay" id="quadroOverlay">
+
+        <div class="quadro-grande-wrapper">
+
+            <img src="../assets/imagens/painel.png"
+                 class="quadro-grande"
+                 alt="Painel ampliado">
+
+            <!-- VISOR -->
+            <input id="visor" type="text" readonly
+                   maxlength="6" aria-label="Senha digitada">
+
+            <!-- BOTÕES NUMÉRICOS -->
+            <button type="button" class="numero n1"
+                    onclick="digitar('1')" aria-label="1"></button>
+
+            <button type="button" class="numero n2"
+                    onclick="digitar('2')" aria-label="2"></button>
+
+            <button type="button" class="numero n3"
+                    onclick="digitar('3')" aria-label="3"></button>
+
+            <button type="button" class="numero n4"
+                    onclick="digitar('4')" aria-label="4"></button>
+
+            <button type="button" class="numero n5"
+                    onclick="digitar('5')" aria-label="5"></button>
+
+            <button type="button" class="numero n6"
+                    onclick="digitar('6')" aria-label="6"></button>
+
+            <button type="button" class="numero n7"
+                    onclick="digitar('7')" aria-label="7"></button>
+
+            <button type="button" class="numero n8"
+                    onclick="digitar('8')" aria-label="8"></button>
+
+            <button type="button" class="numero n9"
+                    onclick="digitar('9')" aria-label="9"></button>
+
+            <button type="button" class="numero n0"
+                    onclick="digitar('0')" aria-label="0"></button>
+
+        </div>
+
+        <!-- FECHAR PAINEL -->
+        <button type="button" class="botao-fechar"
+                onclick="fecharPainel()"
+                aria-label="Fechar painel">×</button>
+
+    </div>
+
+    <!-- PAPEL AMPLIADO -->
+    <div class="papel-overlay" id="papelOverlay">
+
+        <img src="../assets/imagens/papel.png"
+            class="papel-grande"
+            alt="Anotação ampliada">
+
+        <button type="button" class="papel-fechar"
+                onclick="fecharPapel()"
+                aria-label="Fechar papel">×</button>
+
+    </div>
+
+    <!-- =====================================
+     INVENTÁRIO DA PERSONAGEM
+     ===================================== -->
+
+<div id="inventarioJogador" class="inventario-jogador">
+
+    <div class="inventario-cabecalho">
+
+        <span>INVENTÁRIO</span>
+
+        <span id="contadorInventario">0 itens</span>
+
+    </div>
+
+    <div class="inventario-conteudo">
+
+        <div
+            id="listaItensInventario"
+            class="lista-itens-inventario">
+        </div>
+
+        <p
+            id="descricaoItemInventario"
+            class="descricao-item-inventario">
+
+            Selecione um item para visualizar sua descrição.
+
+        </p>
+
+    </div>
+
+</div>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="../js/sistemas/musica.js"></script>
+    <script src="../js/sistemas/configuracoes.js"></script>
+    <script src="../js/historia/objetivos.js"></script>
+        <script src="../js/sistemas/inventario.js"></script>
+    <script src="../js/historia/painel.js"></script>
+    <script src="../js/historia/dialogo1.js"></script>
+
+</body>
+</html>

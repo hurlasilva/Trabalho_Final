@@ -79,10 +79,14 @@ body {
     display: block;
 }
 
+
+
 /* CADERNO CADEADO */
 .caderno-cadeado {
     position: absolute;
-    width: 14%;
+    width: 5%;
+    max-width: 100%;
+    height: auto;
     left: 17.8%;
     top: 16.9%;
     transform: translate(-50%, -50%);
@@ -96,18 +100,13 @@ body {
 }
 
 .caderno-cadeado:hover {
-    transform: translate(-50%, -50%) scale(1.15);
-}
-
-.caderno-cadeado:active {
-    transform: translate(-50%, -50%) scale(0.96);
+    transform: translate(-50%, -50%) scale(1.3);
 }
 
 .caderno-cadeado img {
-    display: block;
     width: 100%;
     height: auto;
-    pointer-events: none;
+    display: block;
 }
 
 /* AMPLIAÇÃO DOS CADERNOS */
@@ -254,7 +253,6 @@ body {
 /* =========================================
    CARROSSEL DAS PÁGINAS DO CADERNO
 ========================================= */
-
 .paginas-overlay {
     position: fixed;
     inset: 0;
@@ -263,29 +261,14 @@ body {
     justify-content: center;
     background: rgba(0, 0, 0, 0.95);
     z-index: 500;
-    padding: 30px;
+    padding: 60px;
 }
 
-/* ÁREA PRINCIPAL DO CARROSSEL */
+/* ÁREA FIXA DO CARROSSEL */
 .carrossel {
     position: relative;
 
-    width: min(850px, 85vw);
-    height: 90vh;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    gap: 12px;
-}
-
-/* ÁREA FIXA DAS PÁGINAS */
-.pagina-container {
-    position: relative;
-
-    width: 100%;
+    width: min(850px, 80vw);
     height: 75vh;
 
     display: flex;
@@ -295,98 +278,73 @@ body {
     overflow: hidden;
 }
 
-/* TODAS AS IMAGENS TERÃO A MESMA ÁREA */
-.pagina-container img {
-    display: block;
+/* IMAGENS DAS PÁGINAS */
+.carrossel img {
+    position: absolute;
 
     width: 100%;
     height: 100%;
 
+    max-width: 100%;
+    max-height: 100%;
+
     object-fit: contain;
     object-position: center center;
 
-    position: absolute;
-    top: 0;
-    left: 0;
-
+    display: block;
     margin: 0;
     padding: 0;
-    border: none;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /* BOTÕES DE NAVEGAÇÃO */
 .carrossel-btn {
-    position: relative;
-
-    flex-shrink: 0;
-
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     width: 45px;
     height: 45px;
-
     border: none;
     border-radius: 50%;
-
-    background: rgba(35, 30, 45, 0.95);
+    background: rgba(20, 20, 20, 0.85);
     color: #c5a8ed;
-
     font-size: 22px;
-    font-weight: bold;
-
     cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    z-index: 3;
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease,
-        opacity 0.2s ease;
+    z-index: 2;
+    transition: 0.2s;
 }
 
-/* BOTÃO ANTERIOR - ACIMA DA IMAGEM */
-.carrossel-btn.anterior {
-    transform: rotate(90deg);
-    top: 40px;
-}
-
-/* BOTÃO PRÓXIMO - ABAIXO DA IMAGEM */
-.carrossel-btn.proximo {
-    transform: rotate(90deg);
-    top: -50px;
-}
-
-/* EFEITO HOVER */
-.carrossel-btn:not(:disabled):hover {
+.carrossel-btn:hover {
     background: rgba(100, 75, 130, 0.95);
     color: white;
-    transform: rotate(90deg) scale(1.1);
+    transform: translateY(-50%) scale(1.1);
 }
 
-/* BOTÕES DESABILITADOS */
-.carrossel-btn:disabled {
-    opacity: 0.25;
-    cursor: not-allowed;
-    pointer-events: none;
+/* BOTÃO ANTERIOR */
+.carrossel-btn.anterior {
+    left: 15px;
+}
+
+/* BOTÃO PRÓXIMO */
+.carrossel-btn.proximo {
+    right: 15px;
 }
 
 /* CONTADOR DE PÁGINAS */
 .contador-paginas {
     position: absolute;
-
-    bottom: 5px;
+    bottom: 15px;
     left: 50%;
     transform: translateX(-50%);
     padding: 8px 15px;
     background: rgba(20, 20, 20, 0.85);
     border-radius: 20px;
-
     color: white;
     font-size: 14px;
-
-    z-index: 4;
+    z-index: 2;
 }
 
 /* RESPONSIVIDADE */
